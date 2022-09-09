@@ -1,15 +1,11 @@
 import React from 'react'
 import SearchBar from '../components/SearchBar/SearchBar';
+import Header from '../components/Header/Header';
 
 const HomePage = () => {
   return (<>
-
-  {/* The header will be a separate component */}
-    <header>
-      <h1>Top Eats</h1>
-      <nav>Login / Signup / Profile Image</nav>
-    </header>
-    
+    <Header />
+  
     <SearchBar />
 
   {/* The restaurantList and individual restaurantPreview will be separant components */}
@@ -18,7 +14,6 @@ const HomePage = () => {
       {/* Map through the restaurants and render individual restaurantPreview components */}
       <div>Restaurant Name, Location, Website Link</div>
     </div>
-
   
   </>)
 }
