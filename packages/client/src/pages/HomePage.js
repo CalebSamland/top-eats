@@ -9,9 +9,9 @@ const HomePage = () => {
       <h1>Top Eats</h1>
       <nav>Login / Signup / Profile Image</nav>
     </header>
-
-{/* The search bar will be a separate component */}
+    
     <SearchBar />
+
   {/* The restaurantList and individual restaurantPreview will be separant components */}
     <div>
       <h2>Restaurant List</h2>
