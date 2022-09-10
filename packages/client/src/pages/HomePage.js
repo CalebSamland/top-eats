@@ -14,6 +14,9 @@ const HomePage = () => {
 
 {/* The search bar will be a separate component */}
     <SearchBar setRestaunts={setRestaurants}/>
+    
+    <SearchBar />
+
   {/* The restaurantList and individual restaurantPreview will be separant components */}
     <div>
       <h2>Restaurant List</h2>
