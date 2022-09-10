@@ -6,16 +6,12 @@ const router = Router();
 
 // All routes start with the API_URL (default '/api')
 
-// Return restaurants that meet the search criteria for 'term' 'location 'total'
-// term: string like 'deli', 'mexican', etc
-// location: 'buffalo NY', Texas, NYC
-// total: 10, or whatever num of results you want
-// limit: should limit the number of returned restaurants. Doesn't seem to be working
+// Return restaurants that meet the search criteria for 'term' and 'location'
+// term: user inputted string like 'deli', 'mexican', etc
+// location: user inputted location 'buffalo NY', Texas, NYC
+// categories: of businesses.  should be 'food'
+// limit: should limit the number of returned restaurants. should be 10 for now.
 router.post('/restaurants', async (req, res) => {
-
-  // There's an issue with the 'limit' params... never seems to work. Might have something to do with int vs string
-  // req.query.limit = parseInt(req.query.limit)
-  // console.log('query: ',req.query.limit)
   
   // adding the bearer token to the request header 
   const config = {
@@ -25,7 +21,7 @@ router.post('/restaurants', async (req, res) => {
   }
 
   try {
-    const response = await axios.get(`https://api.yelp.com/v3/businesses/search?term=${req.query.term}&location=${req.query.location}&categories=${req.query.categories}`, config)
+    const response = await axios.get(`https://api.yelp.com/v3/businesses/search?term=${req.query.term}&location=${req.query.location}&categories=${req.query.categories}&limit=${req.query.limit}`, config)
     let apiRes =  response.data.businesses
     res.send(apiRes)
   } catch (error) {
