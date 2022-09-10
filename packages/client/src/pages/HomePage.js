@@ -13,7 +13,7 @@ const HomePage = () => {
     </header>
 
 {/* The search bar will be a separate component */}
-    <SearchBar setRestaunts={setRestaurants}/>
+    <SearchBar setRestaurants={setRestaurants}/>
 
   {/* The restaurantList and individual restaurantPreview will be separant components */}
     <div>
