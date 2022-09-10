@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar/SearchBar';
 
 const HomePage = () => {
+  const [restaurants, setRestaurants] = useState([]);
+  
   return (<>
 
   {/* The header will be a separate component */}
@@ -11,7 +13,7 @@ const HomePage = () => {
     </header>
 
 {/* The search bar will be a separate component */}
-    <SearchBar />
+    <SearchBar setRestaunts={setRestaurants}/>
   {/* The restaurantList and individual restaurantPreview will be separant components */}
     <div>
       <h2>Restaurant List</h2>

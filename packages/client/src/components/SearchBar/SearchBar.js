@@ -7,7 +7,7 @@ const initialState = {
     location: '',
 }
 
-const SearchBar = () => {
+const SearchBar = ({setRestaurants}) => {
     const [searchInput, setSearchIput] = useState(initialState);
 
     const handleChange = (e) => {
