@@ -2,8 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { API_URL, DB_URL } from './configs';
-import routes from './routes';
+import { API_URL, DB_URL } from './configs/index.js';
+import routes from './routes/index.js';
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,

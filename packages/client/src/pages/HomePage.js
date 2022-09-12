@@ -1,29 +1,21 @@
-import React, { useState } from 'react'
-import SearchBar from '../components/SearchBar/SearchBar';
+import React from "react";
+import SearchBar from "../components/SearchBar/SearchBar";
+import Header from "../components/Header/Header";
+import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
 
 const HomePage = () => {
   const [restaurants, setRestaurants] = useState([]);
-  
-  return (<>
 
-  {/* The header will be a separate component */}
-    <header>
-      <h1>Top Eats</h1>
-      <nav>Login / Signup / Profile Image</nav>
-    </header>
-
-{/* The search bar will be a separate component */}
-    <SearchBar setRestaurants={setRestaurants}/>
-
-  {/* The restaurantList and individual restaurantPreview will be separant components */}
-    <div>
+  return (
+    <>
+      <Header />
+      <SearchBar setRestaurants={setRestaurants}/>
       <h2>Restaurant List</h2>
-      {/* Map through the restaurants and render individual restaurantPreview components */}
-      <div>Restaurant Name, Location, Website Link</div>
-    </div>
+      <RestaurantResults />
+        {/* Map through the restaurants and render individual restaurantPreview components */}
+      </div>
+    </>
+  );
+};
 
-  
-  </>)
-}
-
-export default HomePage
+export default HomePage;

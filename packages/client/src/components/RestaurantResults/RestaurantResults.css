@@ -1,0 +1,8 @@
+#restaurants {
+  display: flex;
+  color: red;
+}
+
+body {
+  white-space: pre-wrap;
+}
