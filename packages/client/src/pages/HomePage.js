@@ -4,15 +4,14 @@ import Header from "../components/Header/Header";
 import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
 
 const HomePage = () => {
+  const [restaurants, setRestaurants] = useState([]);
+
   return (
     <>
       <Header />
-
-      <SearchBar />
-      {/* The restaurantList and individual restaurantPreview will be separant components */}
-      <div>
-        <h2>Restaurant List</h2>
-        <RestaurantResults />
+      <SearchBar setRestaurants={setRestaurants}/>
+      <h2>Restaurant List</h2>
+      <RestaurantResults />
         {/* Map through the restaurants and render individual restaurantPreview components */}
       </div>
     </>

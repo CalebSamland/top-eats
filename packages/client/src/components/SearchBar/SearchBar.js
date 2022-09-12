@@ -7,7 +7,7 @@ const initialState = {
     location: '',
 }
 
-const SearchBar = () => {
+const SearchBar = ({setRestaurants}) => {
     const [searchInput, setSearchIput] = useState(initialState);
 
     const handleChange = (e) => {
@@ -19,7 +19,9 @@ const SearchBar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log(searchInput);
+        axios.post('http://localhost:3001/api/restaurants', searchInput)
+            .then(response => setRestaurants(response.data))
+            .catch(error => console.log(error))
     }
 
     return (
