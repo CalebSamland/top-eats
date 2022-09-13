@@ -1,14 +1,14 @@
 import React from "react";
+import './RestaurantPreview.css'
 
 // Needs to take in prop from RestaurantResultsList component
-const restaurantPreview = (props) => {
+const restaurantPreview = ({ restaurant }) => {
     return (
-        <div>
-            <h3>{props.name}</h3>
-            <h3>{props.location}</h3>
-            <h3>{props.url}</h3>
+        <div id="preview">
+          <h2>{restaurant.name}</h2>
+          <h3>{restaurant.location.display_address}</h3>
         </div>
-    )
+    ) 
 }
 
 export default restaurantPreview;
