@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import './SearchBar.css'
+// import { useSearchParams } from "react-router-dom";
 
 const initialState = {
-    searchTerm: '',
+    term: '',
     location: '',
+    categories: 'food',
+    limit: 10
 }
 
-const SearchBar = ({setRestaurants}) => {
-    const [searchInput, setSearchIput] = useState(initialState);
+const SearchBar = ({restaurants, setRestaurants}) => {
+    const [searchInput, setSearchInput] = useState(initialState);
 
     const handleChange = (e) => {
-        setSearchIput({
+        setSearchInput({
             ...searchInput,
             [e.target.name]: e.target.value,
         })
@@ -19,15 +23,38 @@ const SearchBar = ({setRestaurants}) => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/api/restaurants', searchInput)
-            .then(response => setRestaurants(response.data))
-            .catch(error => console.log(error))
+        // console.log(restaurants)
+        // axios.post('http://localhost:3001/api/restaurants', searchInput)
+        //     .then(response => {
+        //       setRestaurants(response.data)
+        //       // setRestaurantList(response.data)              
+        //     })
+        //     .catch(error => console.log(error))
     }
 
+    useEffect(() => {
+      const getRestaurantList = async () => {
+        try {
+          console.log(searchInput)
+          const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants?term=${searchInput.term}&location=${searchInput.location}&categories=${searchInput.categories}&limit=${searchInput.limit}`)
+          setRestaurants(restaurantListAPI.data)
+          console.log(restaurantListAPI.data)
+          // setPostLoading(false)
+        } catch (err) {
+          // console.error(err.message)
+          // setPostLoading(false)
+          // setPostError(true)
+        }
+      }
+      getRestaurantList()
+      console.log(restaurants)
+    }, [searchInput]) // add correct dependency array []
+    
+
     return (
-        <div>
+        <div id="searchBar">
             <form>
-                <input type="text" name="searchTerm" value={searchInput.searchTerm} placeholder="Search for restaurants" onChange={handleChange}/>
+                <input type="text" name="term" value={searchInput.term} placeholder="Search for restaurants" onChange={handleChange}/>
                 <input type="text" name="location" value={searchInput.location} placeholder="City/State/Zip Code" onChange={handleChange} />
                 <button onClick={handleSearch}>Search</button>
             </form>

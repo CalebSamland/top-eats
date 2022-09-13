@@ -6,12 +6,13 @@ import RestaurantResults from "../components/RestaurantResults/RestaurantResults
 const HomePage = () => {
   const [restaurants, setRestaurants] = useState([]);
 
+
   return (
     <>
       <Header />
-      <SearchBar setRestaurants={setRestaurants}/>
+      <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
       <h2>Restaurant List</h2>
-      <RestaurantResults />
+      <RestaurantResults  restaurants={restaurants}/>
         {/* Map through the restaurants and render individual restaurantPreview components */}
     </>
   );
