@@ -13,6 +13,8 @@ const initialState = {
 
 const SearchBar = ({restaurants, setRestaurants}) => {
     const [searchInput, setSearchInput] = useState(initialState);
+    const [query, setQuery] = useState()
+
 
     const handleChange = (e) => {
         setSearchInput({
@@ -30,13 +32,15 @@ const SearchBar = ({restaurants, setRestaurants}) => {
         //       // setRestaurantList(response.data)              
         //     })
         //     .catch(error => console.log(error))
+
+        setQuery({...searchInput})
     }
 
     useEffect(() => {
       const getRestaurantList = async () => {
         try {
           console.log(searchInput)
-          const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants?term=${searchInput.term}&location=${searchInput.location}&categories=${searchInput.categories}&limit=${searchInput.limit}`)
+          const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants`, searchInput)
           setRestaurants(restaurantListAPI.data)
           console.log(restaurantListAPI.data)
           // setPostLoading(false)
@@ -47,8 +51,8 @@ const SearchBar = ({restaurants, setRestaurants}) => {
         }
       }
       getRestaurantList()
-      console.log(restaurants)
-    }, [searchInput]) // add correct dependency array []
+      // console.log(restaurants)
+    }, [query]) // add correct dependency array []
     
 
     return (

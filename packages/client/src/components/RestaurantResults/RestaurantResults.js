@@ -1,13 +1,13 @@
 import React from "react";
-import "./RestaurantResults.css";
 import RestaurantPreview from '../RestaurantPreview/RestaurantPreview'
+import './RestaurantResults.css'
 
 
 const RestaurantResults = ({ restaurants }) => {
   return (
-    <div id="restaurant-list">
+    <div>
       {restaurants.map((restaurant, i) => (
-        <RestaurantPreview restaurant={restaurant} />
+        <RestaurantPreview restaurant={restaurant} key={i} />
       ))}
     </div>
   );

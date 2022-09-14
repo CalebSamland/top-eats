@@ -19,10 +19,12 @@ router.post('/restaurants', async (req, res) => {
       Authorization: "Bearer s8qRiEmnaVDeNMG73UiLzcMCoWHR3nqYDo5O01L9laLrfFW6_c277fixPBhxEG8NheadeBPgdAPOFoxsPSJSyv8lVyGT7NiGnXZfjxPzpKL5p8HTrIQHh7IGjNEbY3Yx"
     }    
   }
-
+  
   try {
-    const response = await axios.get(`https://api.yelp.com/v3/businesses/search?term=${req.query.term}&location=${req.query.location}&categories=${req.query.categories}&limit=${req.query.limit}`, config)
-    let apiRes =  response.data.businesses
+    const searchInput = req.body
+    // console.log(searchInput)
+    const response = await axios.get(`https://api.yelp.com/v3/businesses/search?term=${searchInput.term}&location=${searchInput.location}&categories=${searchInput.categories}&limit=${searchInput.limit}`, config)
+    let apiRes = response.data.businesses
     res.send(apiRes)
   } catch (error) {
     console.log(error)
