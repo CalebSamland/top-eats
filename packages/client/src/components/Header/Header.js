@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
 import './Header.css'
 
 const Header = () => {
@@ -23,12 +24,12 @@ const Header = () => {
         {
           user ?
             <>
-            <button onClick={() => logout()}>Logout</button>
+            <Button variant='info' onClick={() => logout()}>Logout</Button>
             <img />
             </>
           :
-            <><button>Login</button>
-            <button>Sign Up</button>
+            <><Button variant='info'>Login</Button>
+            <Button variant='info'>Sign Up</Button>
             </>  
         }
       </div>
