@@ -1,15 +1,17 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import RestaurantPreview from '../RestaurantPreview/RestaurantPreview'
-import './RestaurantResults.css'
 
 
 const RestaurantResults = ({ restaurants }) => {
   return (
-    <div>
-      {restaurants.map((restaurant, i) => (
-        <RestaurantPreview restaurant={restaurant} key={i} />
-      ))}
-    </div>
+    <Container>
+      {
+        restaurants.map((restaurant, i) => (
+          <RestaurantPreview restaurant={restaurant} key={i} />
+        )
+      )}
+    </Container>
   );
 };
 
