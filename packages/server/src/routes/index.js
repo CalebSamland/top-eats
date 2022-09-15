@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import Axios from 'axios';
 import axios from 'axios';
 
 const router = Router();
