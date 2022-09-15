@@ -9,13 +9,19 @@ const HomePage = () => {
 
 
   return (
-    <Container fluid>
+    <>
+    
       <Header />
+    <Container fluid>
       <Container breakpoint='xl'>
         <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
         <RestaurantResults  restaurants={restaurants}/>
       </Container>
     </Container>
+    
+    
+    
+    </>
   );
 };
 
