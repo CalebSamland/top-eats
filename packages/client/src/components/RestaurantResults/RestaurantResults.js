@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { CardGroup, Container } from "react-bootstrap";
 import RestaurantPreview from '../RestaurantPreview/RestaurantPreview'
 
 

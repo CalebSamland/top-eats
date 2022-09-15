@@ -56,19 +56,21 @@ const SearchBar = ({restaurants, setRestaurants}) => {
     
 
   return (
-    <Form style={{margin: '20px'}}>
-      <Row>
-        <Col xs={5}> 
-          <Form.Control type='text' name='term' placeholder="Food" value={searchInput.term} onChange={handleChange} />
-        </Col>
-        <Col xs={5}>
-          <Form.Control type="text" name="location" value={searchInput.location} placeholder="Location" onChange={handleChange} />
-        </Col>
-        <Col xs={2} className='justify-content-center'>
-          <Button style={{minWidth: '100%'}} variant='warning' onClick={handleSearch}>Search</Button>
-        </Col> 
-      </Row>
-    </Form>
+    <Container>
+      <Form style={{margin: '20px 0'}}>
+        <Row>
+          <Col xs={5}> 
+            <Form.Control type='text' name='term' placeholder="Food" value={searchInput.term} onChange={handleChange} />
+          </Col>
+          <Col xs={5}>
+            <Form.Control type="text" name="location" value={searchInput.location} placeholder="Location" onChange={handleChange} />
+          </Col>
+          <Col xs={2} className='justify-content-center'>
+            <Button style={{minWidth: '100%'}} variant='warning' onClick={handleSearch}>Search</Button>
+          </Col> 
+        </Row>
+      </Form>
+    </Container>
   )
 }
 

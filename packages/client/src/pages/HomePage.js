@@ -10,17 +10,11 @@ const HomePage = () => {
 
   return (
     <>
-    
       <Header />
-    
       <Container style={{maxWidth: '1024px'}}>
         <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
         <RestaurantResults  restaurants={restaurants}/>
       </Container>
-  
-    
-    
-    
     </>
   );
 };
