@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <Navbar bg='secondary' variant='dark'>
-      <Container fluid='lg'>
+      <Container fluid='lg' style={{maxWidth: '1024px'}}>
         <Navbar.Brand>Top Eats</Navbar.Brand>
         {
           user ?

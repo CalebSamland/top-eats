@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col, Row, Container } from 'react-bootstrap'
 // import { useSearchParams } from "react-router-dom";
 
 const initialState = {
@@ -56,17 +56,17 @@ const SearchBar = ({restaurants, setRestaurants}) => {
     
 
   return (
-    <Form>
+    <Form style={{margin: '20px'}}>
       <Row>
-        <Col>
+        <Col xs={5}> 
           <Form.Control type='text' name='term' placeholder="Food" value={searchInput.term} onChange={handleChange} />
         </Col>
-        <Col>
+        <Col xs={5}>
           <Form.Control type="text" name="location" value={searchInput.location} placeholder="Location" onChange={handleChange} />
         </Col>
-        <Col>
-          <Button variant='warning' onClick={handleSearch}>Search</Button>
-        </Col>
+        <Col xs={2} className='justify-content-center'>
+          <Button style={{minWidth: '100%'}} variant='warning' onClick={handleSearch}>Search</Button>
+        </Col> 
       </Row>
     </Form>
   )
