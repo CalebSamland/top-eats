@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
-import './Header.css'
+import { Button, Container, Image, Navbar, Nav } from 'react-bootstrap'
+// import './Header.css'
 
 const Header = () => {
 
@@ -16,24 +16,26 @@ const Header = () => {
   }
 
   return (
-    <header>
-      <div id='headerLeft'>
-        <h1>Top Eats</h1>
-      </div>
-      <div id='headerRight'>
-        {
-          user ?
-            <>
-            <Button variant='info' onClick={() => logout()}>Logout</Button>
-            <img />
-            </>
-          :
-            <><Button variant='info'>Login</Button>
-            <Button variant='info'>Sign Up</Button>
-            </>  
-        }
-      </div>
-    </header>
+    <Navbar bg='secondary' variant='dark'>
+      <Container>
+        <Navbar.Brand className='justify-content-start'>Top Eats</Navbar.Brand>
+      </Container>
+
+      <Container className='justify-content-end'>
+      {
+        user ?
+        <Nav>
+            <Nav.Link onClick={()=>logout()}>Logout</Nav.Link>      
+            <Image />
+          </Nav>
+        :
+        <Nav>
+            <Nav.Link>Login</Nav.Link>
+            <Nav.Link>Sign Up</Nav.Link>
+          </Nav>  
+      }
+      </Container>
+    </Navbar>
   )
 }
 
