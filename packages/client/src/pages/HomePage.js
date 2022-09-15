@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Header from "../components/Header/Header";
 import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
+import { Container } from 'react-bootstrap'
 
 const HomePage = () => {
   const [restaurants, setRestaurants] = useState([]);
 
 
   return (
-    <>
+    <Container fluid>
       <Header />
-      <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
-      <h2>Restaurant List</h2>
-      <RestaurantResults  restaurants={restaurants}/>
-        {/* Map through the restaurants and render individual restaurantPreview components */}
-    </>
+      <Container breakpoint='xl'>
+        <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
+        <RestaurantResults  restaurants={restaurants}/>
+      </Container>
+    </Container>
   );
 };
 
