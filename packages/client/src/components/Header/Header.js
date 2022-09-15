@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Header.css'
+import { Button, Container, Image, Navbar, Nav, Row, Col } from 'react-bootstrap'
 
 const Header = () => {
 
@@ -15,25 +15,23 @@ const Header = () => {
   }
 
   return (
-    <header>
-      <div id='headerLeft'>
-        <h1>Top Eats</h1>
-      </div>
-      <div id='headerRight'>
+    <Navbar bg='secondary' variant='dark'>
+      <Container fluid='lg' style={{maxWidth: '1024px'}}>
+        <Navbar.Brand>Top Eats</Navbar.Brand>
         {
           user ?
-            <>
-            <button onClick={() => logout()}>Logout</button>
-            <img />
-            </>
+          <Nav className='justify-content-end'>
+              <Nav.Link onClick={()=>logout()}>Logout</Nav.Link>      
+              <Image />
+            </Nav>
           :
-            <><button>Login</button>
-            <button>Sign Up</button>
-            </>  
+          <Nav>
+              <Nav.Link>Login</Nav.Link>
+              <Nav.Link>Sign Up</Nav.Link>
+            </Nav>  
         }
-      </div>
-    </header>
-  )
-}
+      </Container>
+    </Navbar>   
+  )}
 
 export default Header
