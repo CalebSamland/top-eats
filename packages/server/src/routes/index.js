@@ -30,5 +30,25 @@ router.post('/restaurants', async (req, res) => {
   }
 })
 
+router.get('/restaurant/:id', async (req, res) => {
+  const config = {
+    headers: {
+      Authorization: "Bearer s8qRiEmnaVDeNMG73UiLzcMCoWHR3nqYDo5O01L9laLrfFW6_c277fixPBhxEG8NheadeBPgdAPOFoxsPSJSyv8lVyGT7NiGnXZfjxPzpKL5p8HTrIQHh7IGjNEbY3Yx"
+    }    
+  }
+
+  const id = req.params.id
+  console.log('params:', req.params)
+  try {
+    // console.log(id)
+    const response = await axios.get(`https://api.yelp.com/v3/businesses/${id}`, config)
+    let apiRes = response.data
+    res.send(apiRes)
+  } catch (error) {
+    console.log(error)
+  }
+
+})
+
 
 export default router;
