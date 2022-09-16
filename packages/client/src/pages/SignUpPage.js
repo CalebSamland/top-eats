@@ -37,7 +37,7 @@ const SignUpPage = () => {
     return (
         <Container>
             <h3 style={{textAlign: 'center'}}>Sign Up</h3>
-            <Form style={{display: 'flex', flexDirection: 'column'}}>
+            <Form style={{display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" style={{margin: '10px'}}>
                     <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" name="firstName" value={data.firstName} onChange={handleChange} required/>
@@ -48,7 +48,7 @@ const SignUpPage = () => {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Birthday (Optional)</Form.Label>
-                    <Form.Control type="text" name="birthday" value={data.birthday} onChange={handleChange} />
+                    <Form.Control type="date" name="birthday" value={data.birthday} onChange={handleChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" style={{margin: '10px'}}>
                     <Form.Label>Zip Code</Form.Label>
@@ -71,7 +71,7 @@ const SignUpPage = () => {
                     <Form.Control type="password" name="confirmPassword" value={data.confirmPassword} onChange={handleChange} required/>
                 </Form.Group>
                 {data.password !== data.confirmPassword || data.email !== data.confirmEmail ? <span style={{color: 'red'}}>Email or Password Do Not Match</span> : <span></span>}
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
