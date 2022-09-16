@@ -6,11 +6,12 @@ import RestaurantPreview from '../RestaurantPreview/RestaurantPreview'
 const RestaurantResults = ({ restaurants }) => {
   return (
     <Container>
-      {
+      { restaurants ? (
         restaurants.map((restaurant, i) => (
           <RestaurantPreview restaurant={restaurant} key={i} />
         )
-      )}
+      )) : ''
+      }
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Image, Navbar, Nav, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 
@@ -17,7 +18,7 @@ const Header = () => {
   return (
     <Navbar bg='secondary' variant='dark'>
       <Container fluid='lg' style={{maxWidth: '1024px'}}>
-        <Navbar.Brand>Top Eats</Navbar.Brand>
+        <Navbar.Brand href='/'>Top Eats</Navbar.Brand>
         {
           user ?
           <Nav className='justify-content-end'>
