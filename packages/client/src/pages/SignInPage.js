@@ -24,18 +24,18 @@ const SignInPage = () => {
     }
 
     return ( 
-        <Container style={{textAlign: 'center', width: '100vh'}}>
+        <Container style={{textAlign: 'center'}}>
             <h3>Sign In</h3>
-            <Form style={{height: '100vh', width: '300px', margin: '0 auto'}}>
+            <Form style={{height: '100vh', width: '300px', margin: '0 auto'}} onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type='email' name='email' value={data.email} onChange={handleChange} required/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type='password' name='password' value={data.password} onChange={handleChange} />
+                    <Form.Control type='password' name='password' value={data.password} onChange={handleChange} required/>
                 </Form.Group>
-                <Button type='submit' variant='primary' onClick={handleSubmit}>Sign In</Button>
+                <Button type='submit' variant='primary' style={{marginTop: '20px'}}>Sign In</Button>
             </Form>
         </Container>
     )
