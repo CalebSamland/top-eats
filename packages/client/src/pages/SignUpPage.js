@@ -1,27 +1,88 @@
 import React, { useState } from "react";
-import {
-    Container,
-    Row,
-    Col,
-    InputGroup,
-    Form,
-    Button,
-} from 'react-bootstrap'
 import Header from '../components/Header/Header';
-
-const initialState = {
-    firstName: '',
-    lastName: '',
-    birthday: '',
-    zip: '',
-    email: '',
-    password: '',
-    confirmEmail: '',
-    confirmPassword: '',
-}
+import { useNavigate } from "react-router-dom";
+import FormInput from "../components/FormInput/FormInput";
+import './SignUpPage.css';
 
 const SignUpPage = () => {
-    const [data, setData] = useState(initialState);
+    const [data, setData] = useState({
+        firstName: '',
+        lastName: '',
+        birthday: '',
+        zip: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+
+    const inputs = [
+        {
+            id: 1,
+            name: 'firstName',
+            type: "text",
+            placeholder: 'First Name',
+            label: 'First Name',
+            errorMessage: 'First name should be 2-20 characters long',
+            required: true,
+            pattern: "^[A-Za-z]{2,20}$"
+        },
+        {
+            id: 2,
+            name: 'lastName',
+            type: 'text',
+            placeholder: 'Last Name',
+            label: 'Last Name',
+            errorMessage: 'Last name should be 2-20 characters long',
+            required: true,
+            pattern: '^[A-Za-z]{2,20}$'
+        },
+        {
+            id: 3,
+            name: 'birthday',
+            type: 'date',
+            placeholder: '',
+            label: 'Birthday (Optional)'
+        },
+        {
+            id: 4,
+            name: 'zip',
+            type: 'text',
+            placeholder: 'Zip Code',
+            label: 'Zip Code',
+            errorMessage: 'Zip code should be a 5 digit number',
+            required : true,
+            pattern: '^[0-9]{5}$'
+        },
+        {
+            id: 5,
+            name: 'email',
+            type: 'email',
+            placeholder: 'Email',
+            label: 'Email',
+            errorMessage: 'Email should be a valid email address',
+            required: true
+        },
+        {
+            id: 6,
+            name: 'password',
+            type: 'password',
+            placeholder: 'Password',
+            label: 'Password',
+            errorMessage: 'Password must have 8-20 characters and contain at least 1 upper case letter, one lower case letter, one number, and one special character',
+            required: true,
+            pattern: '(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,20}).*$'
+        },
+        {
+            id: 7,
+            name: 'confirmPassword',
+            type: 'password',
+            placeholder: 'Confirm Password',
+            label: 'Confirm Password',
+            errorMessage: 'Passwords do not match',
+            required: true,
+            pattern: data.password
+        }
+    ]
 
     const handleChange = e => {
         setData({
@@ -31,51 +92,19 @@ const SignUpPage = () => {
     }
 
     const handleSubmit = e => {
-        // Make POST request to API to store form data in database
+        e.preventDefault();
     }
 
     return (
-        <Container>
-            <h3 style={{textAlign: 'center'}}>Sign Up</h3>
-            <Form style={{display: 'flex', flexDirection: 'column'}} onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" style={{margin: '10px'}}>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control type="text" name="firstName" value={data.firstName} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group className="mb-3" style={{margin: '10px'}}>
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="text" name="lastName" value={data.lastName} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Birthday (Optional)</Form.Label>
-                    <Form.Control type="date" name="birthday" value={data.birthday} onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" style={{margin: '10px'}}>
-                    <Form.Label>Zip Code</Form.Label>
-                    <Form.Control type="text" name="zip" value={data.zip} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group className="mb-3" style={{margin: '10px'}}>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name="email" value={data.email} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Confirm Email</Form.Label>
-                    <Form.Control type="email" name="confirmEmail" value={data.confirmEmail} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group className="mb-3" style={{margin: '10px'}}>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" value={data.password} onChange={handleChange} required/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" name="confirmPassword" value={data.confirmPassword} onChange={handleChange} required/>
-                </Form.Group>
-                {data.password !== data.confirmPassword || data.email !== data.confirmEmail ? <span style={{color: 'red'}}>Email or Password Do Not Match</span> : <span></span>}
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        </Container>
+        <div className="form-container">
+            <form onSubmit={handleSubmit}>
+                <h1 class="signup-header">Sign Up</h1>
+                {inputs.map((input) => (
+                    <FormInput key={input.id} {...input} value={data[input.name]} onChange={handleChange}/>
+                ))}
+                <button>Submit</button>
+            </form>
+        </div>
     )
 }
 
