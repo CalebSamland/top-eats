@@ -23,17 +23,18 @@ const SearchBar = ({restaurants, setRestaurants}) => {
         })
     }
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        // console.log(restaurants)
-        // axios.post('http://localhost:3001/api/restaurants', searchInput)
-        //     .then(response => {
-        //       setRestaurants(response.data)
-        //       // setRestaurantList(response.data)              
-        //     })
-        //     .catch(error => console.log(error))
+        try {
+            const restaurantListAPI = await axios.post('http://localhost:3001/api/restaurants', searchInput);
+            console.log(restaurantListAPI.data);
+            setRestaurants(restaurantListAPI.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
 
-        setQuery({...searchInput})
+        
     }
 
     // useEffect(() => {
