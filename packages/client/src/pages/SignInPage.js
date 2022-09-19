@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import SignUpHeader from '../components/SignUpHeader/SignUpHeader';
 
 const initialState = {
     email: '',
     password: ''
 }
 
-const SignInPage = () => {
+const SignInPage = ({setUser}) => {
     const [data, setData] = useState(initialState);
 
     const handleChange = e => {
@@ -20,11 +21,12 @@ const SignInPage = () => {
         // Send POST request to check for existing user in database with matching email/password combination
         // If a match is found, authenticate with token and navigate to homepage
         e.preventDefault();
-        console.log(data);
+        setUser(true);
     }
 
     return ( 
-        <Container style={{textAlign: 'center'}}>
+        <Container style={{textAlign: 'center', height: '1000px', width: '100%'}}>
+            <SignUpHeader />
             <h3>Sign In</h3>
             <Form style={{height: '100vh', width: '300px', margin: '0 auto'}} onSubmit={handleSubmit}>
                 <Form.Group>
