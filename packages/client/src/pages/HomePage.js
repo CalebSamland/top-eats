@@ -4,11 +4,11 @@ import Header from "../components/Header/Header";
 import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
 import { Container } from 'react-bootstrap'
 
-const HomePage = ({restaurants, setRestaurants}) => {
+const HomePage = ({restaurants, setRestaurants, setUser}) => {
 
   return (
     <>
-      <Header />
+      <Header setUser={setUser}/>
       <Container style={{maxWidth: '1024px'}}>
         <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
         <RestaurantResults  restaurants={restaurants}/>

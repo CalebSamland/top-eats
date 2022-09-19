@@ -36,23 +36,23 @@ const SearchBar = ({restaurants, setRestaurants}) => {
         setQuery({...searchInput})
     }
 
-    useEffect(() => {
-      const getRestaurantList = async () => {
-        try {
-          console.log(searchInput)
-          const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants`, searchInput)
-          setRestaurants(restaurantListAPI.data)
-          console.log(restaurantListAPI.data)
-          // setPostLoading(false)
-        } catch (err) {
-          // console.error(err.message)
-          // setPostLoading(false)
-          // setPostError(true)
-        }
-      }
-      getRestaurantList()
-      // console.log(restaurants)
-    }, [query]) // add correct dependency array []
+    // useEffect(() => {
+    //   const getRestaurantList = async () => {
+    //     try {
+    //       console.log(searchInput)
+    //       const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants`, searchInput)
+    //       setRestaurants(restaurantListAPI.data)
+    //       console.log(restaurantListAPI.data)
+    //       // setPostLoading(false)
+    //     } catch (err) {
+    //       // console.error(err.message)
+    //       // setPostLoading(false)
+    //       // setPostError(true)
+    //     }
+    //   }
+    //   getRestaurantList()
+    //   // console.log(restaurants)
+    // }, [query]) // add correct dependency array []
     
 
   return (
