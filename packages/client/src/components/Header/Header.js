@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <Navbar bg='secondary' variant='dark'>
       <Container fluid='lg' style={{maxWidth: '1024px'}}>
-        <Navbar.Brand href='/'>Top Eats</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'>Top Eats</Navbar.Brand>
         {
           user ?
           <Nav className='justify-content-end'>

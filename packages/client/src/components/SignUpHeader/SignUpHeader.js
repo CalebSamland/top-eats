@@ -8,8 +8,8 @@ const SignUpHeader = () => {
             <Container fluid="lg">
                 <Navbar.Brand href='/'>Top Eats</Navbar.Brand>
                 <Nav className='justify-content-end'>
-                    <Nav.Link><Link to="/">Sign Up</Link></Nav.Link>
-                    {/* <Nav.Link><Link to="/signin">Sign In</Link></Nav.Link> */}
+                    <Nav.Link as={Link} to='/'>Sign Up</Nav.Link>
+                    <Nav.Link as={Link} to='/signin'>Sign In</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

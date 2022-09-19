@@ -12,7 +12,6 @@ function App() {
   const [restaurants, setRestaurants] = useState(null)
   const [user, setUser] = useState(false);
 
-
   return (
     <>
         {user ?

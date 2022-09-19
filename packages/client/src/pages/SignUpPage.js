@@ -101,7 +101,7 @@ const SignUpPage = ({setUser}) => {
         <div>
             <SignUpHeader />
             <form onSubmit={handleSubmit}>
-                <h1 class="signup-header">Sign Up</h1>
+                <h1 className="signup-header">Sign Up</h1>
                 {inputs.map((input) => (
                     <FormInput key={input.id} {...input} value={data[input.name]} onChange={handleChange}/>
                 ))}

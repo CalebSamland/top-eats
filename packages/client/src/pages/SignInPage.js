@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import SignUpHeader from '../components/SignUpHeader/SignUpHeader';
+import { Link, useNavigate } from 'react-router-dom';
 
 const initialState = {
     email: '',
@@ -9,6 +10,7 @@ const initialState = {
 
 const SignInPage = ({setUser}) => {
     const [data, setData] = useState(initialState);
+    const navigate = useNavigate();
 
     const handleChange = e => {
         setData({
@@ -22,6 +24,7 @@ const SignInPage = ({setUser}) => {
         // If a match is found, authenticate with token and navigate to homepage
         e.preventDefault();
         setUser(true);
+        navigate("/");
     }
 
     return ( 
