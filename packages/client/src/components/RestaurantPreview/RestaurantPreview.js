@@ -10,7 +10,7 @@ const restaurantPreview = ({ restaurant }) => {
         <Card.Text>{restaurant.location.display_address[0]}, {restaurant.location.display_address[1]}</Card.Text>
         <Card.Text>
           <Link to={`/restaurant/${restaurant.id}`} state={{restaurant}}>
-            <span>More Info</span>
+            More Info
           </Link>  
         </Card.Text>
       </Card.Body>
