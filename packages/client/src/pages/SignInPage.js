@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import SignUpHeader from '../components/SignUpHeader/SignUpHeader';
+import Header from '../components/Header/Header'
 import { Link, useNavigate } from 'react-router-dom';
 
 const initialState = {
@@ -28,8 +28,9 @@ const SignInPage = ({setUser}) => {
     }
 
     return ( 
+      <>
+        <Header />
         <Container style={{textAlign: 'center', height: '1000px', width: '100%'}}>
-            <SignUpHeader />
             <h3>Sign In</h3>
             <Form style={{height: '100vh', width: '300px', margin: '0 auto'}} onSubmit={handleSubmit}>
                 <Form.Group>
@@ -43,6 +44,8 @@ const SignInPage = ({setUser}) => {
                 <Button type='submit' variant='primary' style={{marginTop: '20px'}}>Sign In</Button>
             </Form>
         </Container>
+      
+      </>
     )
 }
 
