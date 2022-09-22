@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput/FormInput";
 import './SignUpPage.css';
 import SignUpHeader from "../components/SignUpHeader/SignUpHeader";
+import axios from "axios";
 
-const SignUpPage = ({setUser}) => {
+const SignUpPage = ({ setUser }) => {
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
@@ -47,7 +48,7 @@ const SignUpPage = ({setUser}) => {
         {
             id: 4,
             name: 'zip',
-            type: 'text',
+            type: 'number',
             placeholder: 'Zip Code',
             label: 'Zip Code',
             errorMessage: 'Zip code should be a 5 digit number',
@@ -92,9 +93,14 @@ const SignUpPage = ({setUser}) => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
-        setUser(true);
+        try {
+            const result = await axios.post("http://localhost:3001/api/signup", data);
+            setUser(result.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

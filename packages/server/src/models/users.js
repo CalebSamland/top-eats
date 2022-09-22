@@ -1,16 +1,16 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema.Types;
 
-const userSchema = new Mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      unique: true,
+      unique: false,
       required: true,
     },
     lastName: {
       type: String,
-      unique: true,
+      unique: false,
       required: true,
     },
     email: {

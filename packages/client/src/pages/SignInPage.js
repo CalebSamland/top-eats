@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import SignUpHeader from '../components/SignUpHeader/SignUpHeader';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const initialState = {
     email: '',
@@ -23,8 +24,9 @@ const SignInPage = ({setUser}) => {
         // Send POST request to check for existing user in database with matching email/password combination
         // If a match is found, authenticate with token and navigate to homepage
         e.preventDefault();
-        setUser(true);
-        navigate("/");
+        const result = axios.post("http://localhost:3001/api/signin", data);
+        result.then((result) => setUser(result.data));
+        navigate("/")
     }
 
     return ( 
