@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
     },
     zip: {
       type: Number,
-      unique: true,
+      unique: false,
       required: true,
     },
     profile_image: {

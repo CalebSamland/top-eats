@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const initialState = {
     email: '',
-    password: ''
+    password: '',
+    error: ''
 }
 
 const SignInPage = ({setUser}) => {
@@ -20,13 +21,23 @@ const SignInPage = ({setUser}) => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         // Send POST request to check for existing user in database with matching email/password combination
         // If a match is found, authenticate with token and navigate to homepage
         e.preventDefault();
-        const result = axios.post("http://localhost:3001/api/signin", data);
-        result.then((result) => setUser(result.data));
-        navigate("/")
+        try {
+            const result = await axios.post("http://localhost:3001/api/signin", data);
+            if (result.data.message === "User doesn't exist") {
+                setData({...data, error: "This user doesn't exist"});
+            } else if (result.data.message === "Invalid credentials") {
+                setData({...data, error: "Incorrect password"});
+            } else {
+                setUser(result.data);
+                navigate("/");
+            }
+        } catch (error) {
+            setData({...data, error: error});
+        }
     }
 
     return ( 
@@ -42,6 +53,7 @@ const SignInPage = ({setUser}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' name='password' value={data.password} onChange={handleChange} required/>
                 </Form.Group>
+                <p style={{color: 'red'}}>{data.error}</p>
                 <Button type='submit' variant='primary' style={{marginTop: '20px'}}>Sign In</Button>
             </Form>
         </Container>

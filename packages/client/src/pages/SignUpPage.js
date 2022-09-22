@@ -15,6 +15,7 @@ const SignUpPage = ({ setUser }) => {
         email: '',
         password: '',
         confirmPassword: '',
+        error: '',
     });
 
     const inputs = [
@@ -97,7 +98,11 @@ const SignUpPage = ({ setUser }) => {
         e.preventDefault();
         try {
             const result = await axios.post("http://localhost:3001/api/signup", data);
-            setUser(result.data);
+            if (result.data.message === "User already exists") {
+                setData({...data, error: "An account already exists with that email"});
+            } else {
+                setUser(result.data);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -111,6 +116,7 @@ const SignUpPage = ({ setUser }) => {
                 {inputs.map((input) => (
                     <FormInput key={input.id} {...input} value={data[input.name]} onChange={handleChange}/>
                 ))}
+                <p style={{color: 'red', fontWeight: 'bold'}}>{data.error}</p>
                 <button>Submit</button>
             </form>
         </div>
