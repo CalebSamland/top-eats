@@ -1,18 +1,21 @@
 import React from "react";
-import './RestaurantPreview.css'
+import { Card } from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
-// Needs to take in prop from RestaurantResultsList component
 const restaurantPreview = ({ restaurant }) => {
-    return (
-        <div id="preview">
-          {/* <img src={restaurant.image_url} /> */}
-          <h2>{restaurant.name}</h2>
-          <h3>
-            <span>{restaurant.location.display_address[0]}, </span>
-            <span>{restaurant.location.display_address[1]}</span>
-          </h3>
-        </div>
-    ) 
+  return (
+    <Card style={{margin: '20px'}}>
+      <Card.Body>
+        <Card.Title>{restaurant.name}</Card.Title>
+        <Card.Text>{restaurant.location.display_address[0]}, {restaurant.location.display_address[1]}</Card.Text>
+        <Card.Text>
+          <Link to={`/restaurant/${restaurant.id}`} state={{restaurant}}>
+            More Info
+          </Link>  
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  ) 
 }
 
 export default restaurantPreview;

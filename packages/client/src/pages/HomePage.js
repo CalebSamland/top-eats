@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Header from "../components/Header/Header";
 import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
+import { Container } from 'react-bootstrap'
 
-const HomePage = () => {
-  const [restaurants, setRestaurants] = useState([]);
-
+const HomePage = ({restaurants, setRestaurants, user, setUser}) => {
 
   return (
     <>
-      <Header />
-      <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
-      <h2>Restaurant List</h2>
-      <RestaurantResults  restaurants={restaurants}/>
-        {/* Map through the restaurants and render individual restaurantPreview components */}
+      <Header user={user} setUser={setUser}/>
+      <Container style={{maxWidth: '1024px'}}>
+        <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
+        <RestaurantResults  restaurants={restaurants}/>
+      </Container>
     </>
   );
 };

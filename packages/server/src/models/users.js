@@ -30,6 +30,7 @@ const userSchema = new Mongoose.Schema(
     profile_image: {
       type: String,
       required: false,
+      default: "packages/client/public/defaultavatar.jpeg"
     },
     birthday: {
       type: String,
