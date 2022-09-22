@@ -1,6 +1,17 @@
-import React, { useState } from 'react'
-import { Button, Container, Image, Navbar, Nav, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import {
+  Button,
+  Container,
+  Image,
+  Navbar,
+  Nav,
+  Row,
+  Col,
+  Figure,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import UserProfile from "../../pages/UserProfile";
+import defaultAvatar from "../../Images/defaultavatar.jpeg";
 
 const Header = ({ user, setUser }) => {
 
@@ -31,7 +42,8 @@ const Header = ({ user, setUser }) => {
           </Nav>  
         }
       </Container>
-    </Navbar>   
-  )}
+    </Navbar>
+  );
+};
 
-export default Header
+export default Header;
