@@ -3,7 +3,7 @@ import Header from '../components/Header/Header';
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput/FormInput";
 import './SignUpPage.css';
-import SignUpHeader from "../components/SignUpHeader/SignUpHeader";
+
 
 const SignUpPage = ({setUser}) => {
     const [data, setData] = useState({
@@ -99,7 +99,7 @@ const SignUpPage = ({setUser}) => {
 
     return (
         <div>
-            <SignUpHeader />
+            <Header />
             <form onSubmit={handleSubmit}>
                 <h1 className="signup-header">Sign Up</h1>
                 {inputs.map((input) => (
