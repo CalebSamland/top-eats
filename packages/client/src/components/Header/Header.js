@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 
 const Header = ({ user, setUser }) => {
 
-  console.log({user})
-
-
-
   // const [user, setUser] = useState(
   //   {
   //     firstName: 'Bob',
@@ -18,9 +14,6 @@ const Header = ({ user, setUser }) => {
   const logout = () => {
     setUser(null)
   }
-
-
-
   return (
     <Navbar bg='secondary' variant='dark'>
       <Container fluid='lg' style={{maxWidth: '1024px'}}>
@@ -33,9 +26,9 @@ const Header = ({ user, setUser }) => {
             </Nav>
           :
           <Nav>
-              <Nav.Link><Link to={`/signin`}>Login</Link></Nav.Link>
+              <Nav.Link><Link to={`/signin`}>Sign In</Link></Nav.Link>
               <Nav.Link><Link to={`/signup`}>Sign Up</Link></Nav.Link>
-            </Nav>  
+          </Nav>  
         }
       </Container>
     </Navbar>   
