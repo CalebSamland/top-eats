@@ -3,9 +3,9 @@ import Header from '../components/Header/Header';
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput/FormInput";
 import './SignUpPage.css';
+import axios from "axios"
 
-
-const SignUpPage = ({setUser}) => {
+const SignUpPage = ({ setUser }) => {
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
@@ -14,6 +14,7 @@ const SignUpPage = ({setUser}) => {
         email: '',
         password: '',
         confirmPassword: '',
+        error: '',
     });
 
     const inputs = [
@@ -47,7 +48,7 @@ const SignUpPage = ({setUser}) => {
         {
             id: 4,
             name: 'zip',
-            type: 'text',
+            type: 'number',
             placeholder: 'Zip Code',
             label: 'Zip Code',
             errorMessage: 'Zip code should be a 5 digit number',
@@ -92,9 +93,18 @@ const SignUpPage = ({setUser}) => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
-        setUser(true);
+        try {
+            const result = await axios.post("http://localhost:3001/api/signup", data);
+            if (result.data.message === "User already exists") {
+                setData({...data, error: "An account already exists with that email"});
+            } else {
+                setUser(result.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -105,6 +115,7 @@ const SignUpPage = ({setUser}) => {
                 {inputs.map((input) => (
                     <FormInput key={input.id} {...input} value={data[input.name]} onChange={handleChange}/>
                 ))}
+                <p style={{color: 'red', fontWeight: 'bold'}}>{data.error}</p>
                 <button>Submit</button>
             </form>
         </div>
