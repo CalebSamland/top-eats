@@ -14,44 +14,12 @@ function App() {
   
   return (
     <>
-      {user ? (
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <HomePage
-                restaurants={restaurants}
-                setRestaurants={setRestaurants}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/restaurant/:id"
-            element={
-              <RestaurantPage
-                restaurants={restaurants}
-                setRestaurants={setRestaurants}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/user/:id"
-            element={<UserProfile setUser={setUser} />}
-          ></Route>
-        </Routes>
-      ) : (
-        <Routes>
-          <Route exact path="/" element={<SignUpPage setUser={setUser} />} />
-          <Route
-            exact
-            path="/signin"
-            element={<SignInPage setUser={setUser} />}
-          />
-        </Routes>
-      )}
+      <Routes>
+          <Route eaxct path='/' element={ <HomePage user={user} setUser={setUser} restaurants={restaurants} setRestaurants={setRestaurants} /> } />
+          <Route exact path='/restaurant/:id' element={ <RestaurantPage restaurants={restaurants} setRestaurants={setRestaurants} /> } />
+          <Route exact path='/signup' element={ <SignUpPage setUser={setUser}/> } />
+          <Route exact path='/signin' element={ <SignInPage setUser={setUser}/> } />
+      </Routes>
     </>
   );
 }

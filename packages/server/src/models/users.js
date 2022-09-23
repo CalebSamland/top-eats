@@ -29,8 +29,8 @@ const userSchema = new mongoose.Schema(
     },
     profile_image: {
       type: String,
-      default: "packages/client/public/defaultavatar.jpeg",
-      required: true,
+      required: false,
+      default: "packages/client/public/defaultavatar.jpeg"
     },
     birthday: {
       type: String,
