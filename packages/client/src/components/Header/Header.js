@@ -37,8 +37,8 @@ const Header = ({ user, setUser }) => {
             </Nav>
           :
           <Nav>
-              <Nav.Link><Link to={`/signin`}>Sign In</Link></Nav.Link>
-              <Nav.Link><Link to={`/signup`}>Sign Up</Link></Nav.Link>
+              <Nav.Link as={Link} to={`/signin`}>Sign In</Nav.Link>
+              <Nav.Link as={Link} to={`/signup`}>Sign Up</Nav.Link>
           </Nav>  
         }
       </Container>
