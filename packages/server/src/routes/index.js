@@ -1,8 +1,8 @@
 import { Router } from "express";
 import axios from "axios";
 import User from "../models/users.js";
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -60,46 +60,75 @@ router.get("/restaurant/:id", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-    const {firstName, lastName, birthday, zip, email, password, confirmPassword} = req.body;
+  const {
+    firstName,
+    lastName,
+    birthday,
+    zip,
+    email,
+    password,
+    confirmPassword,
+  } = req.body;
 
-    try {
-        const existingUser = await User.findOne({ email });
-        if (existingUser) return res.json({ message: "User already exists" });
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.json({ message: "User already exists" });
 
-        // if (password !== confirmPassword) return res.status(400).json({ message: "Passwords don't match" });
+    // if (password !== confirmPassword) return res.status(400).json({ message: "Passwords don't match" });
 
-        const passwordHash = await bcrypt.hash(password, 12);
+    const passwordHash = await bcrypt.hash(password, 12);
 
-        const result = await User.create({ firstName, lastName, birthday, zip, email, passwordHash });
+    const result = await User.create({
+      firstName,
+      lastName,
+      birthday,
+      zip,
+      email,
+      passwordHash,
+    });
 
-        const token = jwt.sign({ email: result.email, id: result._id }, 'test', {  expiresIn: "1h"});
+    const token = jwt.sign({ email: result.email, id: result._id }, "test", {
+      expiresIn: "1h",
+    });
 
-        res.status(200).json({ result, token });
-    } catch (error) {
-        res.status(500).json({ message: `${error}` });
-    }
+    res.status(200).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: `${error}` });
+  }
 });
 
 router.post("/signin", async (req, res) => {
-    const {email, password} = req.body;
+  const { email, password } = req.body;
 
-    try {
-        const existingUser = await User.findOne({ email });
-        if (!existingUser) return res.json({ message: "User doesn't exist" });
+  try {
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) return res.json({ message: "User doesn't exist" });
 
-        const isPasswordCorrect = await bcrypt.compare(password, existingUser.passwordHash);
-        if (!isPasswordCorrect) return res.json({ message: "Invalid credentials" });
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      existingUser.passwordHash
+    );
+    if (!isPasswordCorrect) return res.json({ message: "Invalid credentials" });
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, 'test', { expiresIn: "1h" });
-        res.status(200).json({ result: existingUser, token });
-    } catch (error) {
-        res.status(500).json({ message: `${error}` });
-    }
+    const token = jwt.sign(
+      { email: existingUser.email, id: existingUser._id },
+      "test",
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ result: existingUser, token });
+  } catch (error) {
+    res.status(500).json({ message: `${error}` });
+  }
 });
 
 router.get("/getUsers", async (req, res) => {
-    const result = await User.find({});
-    res.status(200).json({ result });
-})
+  const result = await User.findOne({ _id: req.params.id });
+  console.log(result);
+  res.status(200).json({ result });
+});
+
+router.get("/", async (req, res) => {
+  res.status(200).send("api endpoint");
+});
 
 export default router;
