@@ -7,7 +7,7 @@ const reviewSchema = new mongoose.Schema (
       type: {ObjectId},
       ref: 'User'
     },
-    usersProfileImage: {
+    authorProfileImage: {
       type: {ObjectId},
       ref: 'User',
     },

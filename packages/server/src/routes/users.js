@@ -10,7 +10,7 @@ router
   .get(async (req, res) => {
     const populateReviews = [];
     const populateSaved = [];
-    const user = await User.findOne({ username: req.params.id })
+    const user = await User.findOne({ _id: req.params.id })
       .populate(populateReviews)
       .populate(populateSaved)
       .exec();
