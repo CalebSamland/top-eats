@@ -30,15 +30,15 @@ const Header = ({ user, setUser }) => {
       <Container fluid='lg' style={{maxWidth: '1024px'}}>
         <Navbar.Brand as={Link} to='/'>Top Eats</Navbar.Brand>
         {
-          (user === false) ?
+          user ?
           <Nav className='justify-content-end'>
               <Nav.Link onClick={()=>logout()}>Logout</Nav.Link>      
               <Image />
             </Nav>
           :
           <Nav>
-              <Nav.Link><Link to={`/signin`}>Sign In</Link></Nav.Link>
-              <Nav.Link><Link to={`/signup`}>Sign Up</Link></Nav.Link>
+              <Nav.Link as={Link} to={`/signin`}>Sign In</Nav.Link>
+              <Nav.Link as={Link} to={`/signup`}>Sign Up</Nav.Link>
           </Nav>  
         }
       </Container>
