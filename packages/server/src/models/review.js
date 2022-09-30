@@ -1,20 +1,19 @@
 import mongoose from "mongoose";
-import { ObjectId } from mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types
 
 const reviewSchema = new mongoose.Schema (
   {
     author: {
-      type: {ObjectId},
+      type: String,
       ref: 'User'
     },
-    authorProfileImage: {
-      type: {ObjectId},
-      ref: 'User',
+    restaurantID: {
+      type: String,
+      required: true
     },
     reviewBody: {
       type: String,
       required: true,
-
     },
     rating: {
       type: Number,

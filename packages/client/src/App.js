@@ -6,18 +6,11 @@ import RestaurantPage from "./pages/RestaurantPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import UserProfile from "./pages/UserProfile";
-import { useProvideAuth } from "./hooks/useAuth";
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
-  // const [user, setUser] = useState(null);
-  console.log(user);
-
-
-  const {
-    state: {user}
-  } = useProvideAuth()
-  
+  const [user, setUser] = useState(null);
+      
   return (
     <>
       <Routes>
