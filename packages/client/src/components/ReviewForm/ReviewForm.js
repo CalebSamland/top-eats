@@ -12,12 +12,14 @@ import {
 } from "react-bootstrap";
 import "../ReviewForm/ReviewForm.css";
 
-const ReviewForm = () => {
+const ReviewForm = ({user}) => {
   const starsArray = [1, 2, 3, 4, 5];
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [file, setFile] = useState(null);
   const [show, setShow] = useState(false);
+
+  console.log(user)
 
   const handleChange = (event) => {
     setFile(event.target.files[0]);

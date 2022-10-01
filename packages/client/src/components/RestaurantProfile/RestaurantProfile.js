@@ -4,7 +4,7 @@ import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
 // import StarRating from "react-bootstrap-star-rating";
 
-const RestaurantProfile = ({ restaurant}) => {
+const RestaurantProfile = ({ restaurant, user }) => {
   // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
   const id = restaurant.id;
   const [details, setDetails] = useState();
@@ -93,7 +93,7 @@ const RestaurantProfile = ({ restaurant}) => {
         ""
       )}
       <div>
-        <ReviewForm />
+        <ReviewForm user={user}/>
       </div>
     </Container>
   );
