@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
@@ -6,11 +6,12 @@ import RestaurantPage from "./pages/RestaurantPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import UserProfile from "./pages/UserProfile";
+import {useLocalStorage} from "./hooks/useLocalStorage";
 
 function App() {
   const [restaurants, setRestaurants] = useState(null);
-  const [user, setUser] = useState(null);
-      
+  const [user, setUser] = useLocalStorage("user", null);
+
   return (
     <>
       <Routes>
