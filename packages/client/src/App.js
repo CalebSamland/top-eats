@@ -10,8 +10,7 @@ import UserProfile from "./pages/UserProfile";
 function App() {
   const [restaurants, setRestaurants] = useState(null);
   const [user, setUser] = useState(null);
-  console.log(user);
-  
+      
   return (
     <>
       <Routes>
