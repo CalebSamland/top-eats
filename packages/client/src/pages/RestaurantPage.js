@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import RestaurantProfile from '../components/RestaurantProfile/RestaurantProfile';
 import ReviewList from '../components/ReviewList/ReviewList'
 
-const RestaurantPage = ( {restaurants, setRestaurants} ) => {
+const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
 
   const location = useLocation()
   const restaurant = location.state.restaurant
@@ -29,7 +29,7 @@ const RestaurantPage = ( {restaurants, setRestaurants} ) => {
 
   return (
     <>
-      <Header />
+      <Header user={user} setUser={setUser}/>
       <RestaurantProfile restaurant={restaurant} />
       <ReviewList reviews={reviews}/>
     </>

@@ -14,10 +14,11 @@ function App() {
   return (
     <>
       <Routes>
-          <Route eaxct path='/' element={ <HomePage user={user}  restaurants={restaurants} setRestaurants={setRestaurants} /> } />
-          <Route exact path='/restaurant/:id' element={ <RestaurantPage restaurants={restaurants} setRestaurants={setRestaurants} /> } />
-          <Route exact path='/signup' element={ <SignUpPage /> } />
-          <Route exact path='/signin' element={ <SignInPage /> } />
+          <Route exact path='/' element={ <HomePage user={user} setUser={setUser} restaurants={restaurants} setRestaurants={setRestaurants} /> } />
+          <Route exact path='/restaurant/:id' element={ <RestaurantPage restaurants={restaurants} setRestaurants={setRestaurants} user={user} setUser={setUser}/> } />
+          <Route exact path='/signup' element={ <SignUpPage setUser={setUser}/> } />
+          <Route exact path='/signin' element={ <SignInPage setUser={setUser}/> } />
+          <Route exact path='/userProfile' element={ <UserProfile user={user} setUser={setUser} /> } />
       </Routes>
     </>
   );
