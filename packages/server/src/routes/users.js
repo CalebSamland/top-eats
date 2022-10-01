@@ -1,5 +1,5 @@
 import express from "express";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { User } from "../models";
 import fileUpload from "../models/fileUpload";
 
@@ -83,7 +83,15 @@ router
     }
   });
 
-router.route("/").post(fileUpload(), async (req, res) => {
+router.get("/fileUpload", async (req, res) => {
+  res.status(200).send("file-upload endpoint");
+});
+
+router.get("/users", async (req, res) => {
+  res.status(200).send("user endpoint");
+});
+
+router.route("/fileUpload").post(fileUpload(), async (req, res) => {
   if (req.files || Object.keys(req.files).length === 0) {
     return res.status(400).json({ error: "No files selected" });
   }

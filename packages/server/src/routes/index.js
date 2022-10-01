@@ -13,6 +13,11 @@ const router = Router();
 // location: user inputted location 'buffalo NY', Texas, NYC
 // categories: of businesses.  should be 'food'
 // limit: should limit the number of returned restaurants. should be 10 for now.
+
+router.get("/", async (req, res) => {
+  res.status(200).send("api endpoint");
+});
+
 router.post("/restaurants", async (req, res) => {
   // adding the bearer token to the request header
   const config = {
@@ -121,14 +126,18 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-router.get("/getUsers", async (req, res) => {
+router.get("/getUser", async (req, res) => {
   const result = await User.findOne({ _id: req.params.id });
   console.log(result);
   res.status(200).json({ result });
 });
 
-router.get("/", async (req, res) => {
-  res.status(200).send("api endpoint");
-});
+router
+  .get("/user/fileUpload", async (req, res) => {
+    res.status(200).send("file-upload endpoint");
+  })
+  .post("/user/fileUpload", async (req, res) => {
+    res.status(200).send(res.data);
+  });
 
 export default router;

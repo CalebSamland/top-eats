@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import {
   Button,
@@ -5,6 +6,9 @@ import {
   FloatingLabel,
   FormControl,
   Card,
+  Modal,
+  Form,
+  InputGroup,
 } from "react-bootstrap";
 import "../ReviewForm/ReviewForm.css";
 
@@ -12,6 +16,39 @@ const ReviewForm = () => {
   const starsArray = [1, 2, 3, 4, 5];
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
+  const [file, setFile] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleUpload = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("fileName", file.name);
+
+    const options = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    axios
+      .post("/user/fileUpload", formData, options)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    handleClose();
+  };
+
+  const handleOpen = () => setShow(true);
+  const handleClose = () => setShow(false);
   return (
     <Container>
       <Card style={{ padding: "25px", marginTop: "30px" }}>
@@ -62,6 +99,7 @@ const ReviewForm = () => {
               fontSize: "14px",
               marginTop: "10px",
             }}
+            onClick={() => handleOpen()}
           >
             Add Photos
           </Button>
@@ -77,6 +115,50 @@ const ReviewForm = () => {
           >
             Submit
           </Button>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header className="text-black">
+              <Modal.Title>Upload photos</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="text-black">
+              <Form.Group controlId="image-url">
+                <Form.Label>Image URL</Form.Label>
+                <InputGroup>
+                  <Form.Control
+                    type="file"
+                    name="image-URL"
+                    placeholder="Image URL"
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="success"
+                onClick={handleUpload}
+                style={{
+                  display: "flex",
+                  height: "30px",
+                  width: "100px",
+                  alignItems: "center",
+                }}
+              >
+                Upload
+              </Button>
+              <Button
+                variant="danger"
+                onClick={handleClose}
+                style={{
+                  display: "flex",
+                  height: "30px",
+                  width: "100px",
+                  alignItems: "center",
+                }}
+              >
+                Cancel
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Card.Body>
       </Card>
     </Container>
