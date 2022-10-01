@@ -9,7 +9,7 @@ import UserProfile from "./pages/UserProfile";
 import {useLocalStorage} from "./hooks/useLocalStorage";
 
 function App() {
-  const [restaurants, setRestaurants] = useState(null);
+  const [restaurants, setRestaurants] = useLocalStorage("restaurants", null);
   const [user, setUser] = useLocalStorage("user", null);
 
   return (
