@@ -7,9 +7,10 @@ import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import UserProfile from "./pages/UserProfile";
 import {useLocalStorage} from "./hooks/useLocalStorage";
+import {useSessionStorage} from "./hooks/useSessionStorage";
 
 function App() {
-  const [restaurants, setRestaurants] = useLocalStorage("restaurants", null);
+  const [restaurants, setRestaurants] = useSessionStorage("restaurants", null);
   const [user, setUser] = useLocalStorage("user", null);
 
   return (
