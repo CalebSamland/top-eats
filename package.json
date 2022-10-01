@@ -26,8 +26,13 @@
     "jsonwebtoken": "^8.5.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+<<<<<<< HEAD
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.8"
+=======
+    "react-bootstrap-star-rating": "^0.0.2",
+    "react-router-dom": "^6.3.0"
+>>>>>>> development
   }
 }

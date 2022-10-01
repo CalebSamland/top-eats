@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
-import StarRating from "react-bootstrap-star-rating";
+// import StarRating from "react-bootstrap-star-rating";
 
-const RestaurantProfile = ({ restaurant }) => {
+const RestaurantProfile = ({ restaurant}) => {
   // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
   const id = restaurant.id;
   const [details, setDetails] = useState();

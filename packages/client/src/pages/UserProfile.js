@@ -2,30 +2,33 @@ import React, { useState } from "react";
 import { Container, Figure } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
+import Review from '../components/Review/Review';
 
 //Photo and review divs would be a map of the stored photos and reviews in user state. If user has no photos or reviews,
 //either display 'No Photos' or 'No Reviews' OR we can create a link of some sort to add a photo or review.
 
 //Need to still pull user data from state to add correct information to this page. For now, it is using simple mock data.
 
-const UserProfile = () => {
+const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
 
-  const [user, setUser] = useState({
-    _id: "2399lkmfoq0485us",
-    firstName: "Bob",
-    lastName: "Smith",
-    email: "bob.smith@earthlink.com",
-    profile_image: "packages/client/public/defaultavatar.jpeg",
-    photos: [],
-    reviews: [],
-    posts: [],
-  });
+  const {firstName, lastName, email, birthday, reviews, zip, profile_image, savedRestaurants} = user.result;
+
+  const [userData, setUserData] = useState({
+    firstName,
+    lastName,
+    email,
+    birthday,
+    reviews,
+    zip,
+    profile_image,
+    savedRestaurants,
+  })
 
   return (
     <>
       <Container>
-        <Header />
+        <Header user={user} setUser={setUser}/>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
           style={{
@@ -49,11 +52,11 @@ const UserProfile = () => {
         >
           <p>Edit Profile Picture</p>
           <h2>
-            {user.firstName} {user.lastName}
+            {userData.firstName} {userData.lastName}
           </h2>
-          <h6>{user.email}</h6>
-          <h6>Reviews: {user.reviews.length}</h6>
-          <h6>Posts: {user.posts.length}</h6>
+          <h6>{email}</h6>
+          <h6>Reviews: {userData.reviews.length}</h6>
+          <h6>Posts: 0</h6>
         </div>
         <div
           className="photos"
@@ -165,27 +168,14 @@ const UserProfile = () => {
               marginBottom: "100px",
             }}
           >
-            <div
-              style={{
-                height: "125px",
-                width: "80%",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "125px",
-                width: "80%",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "125px",
-                width: "80%",
-                border: "1px solid black",
-              }}
-            ></div>
+            {
+                userData.reviews.length > 0 ?
+                userData.reviews.map((review) => (
+                    <Review />
+                ))
+                :
+                <h6>No Reviews</h6>
+            }
           </Container>
         </div>
       </Container>
