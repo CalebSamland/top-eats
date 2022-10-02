@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Routes>
-          <Route eaxct path='/' element={ <HomePage user={user}  restaurants={restaurants} setRestaurants={setRestaurants} /> } />
+          <Route eaxct path='/' element={ <HomePage user={user} setUser={setUser} restaurants={restaurants} setRestaurants={setRestaurants} /> } />
           <Route exact path='/restaurant/:id' element={ <RestaurantPage restaurants={restaurants} setRestaurants={setRestaurants} /> } />
           <Route exact path='/signup' element={ <SignUpPage /> } />
           <Route exact path='/signin' element={ <SignInPage /> } />
