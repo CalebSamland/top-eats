@@ -163,7 +163,9 @@ router.post('/newReview', async (req, res) => {
 
 // post - get all reviews with the same restaurant ID
 
-router.post('/restaurantReviews/:id', async (req, res) =>{
+// this works just fine, because the restaurant id is within the reviews
+
+router.post('/restaurantReviews/:restaurantID', async (req, res) =>{
   try {
 
     const reviews = await Review.find({restaurantID: req.params.id})
@@ -174,18 +176,66 @@ router.post('/restaurantReviews/:id', async (req, res) =>{
 
 
 })
+// get - get all reviews with same user ID
+// I need to make sure that the userid is stored with the review
 
-router.post('/userReviews/:id', async (req, res) =>{
+router.post('/userReviews/:userID', async (req, res) =>{
   try {
-    const reviews = await Review.find({userID: req.params.id})
+    const reviews = await Review.find({author: req.params.id})
     res.send(reviews)
   } catch (error) {
     console.log(error)
   }
 })
 
-// get - get all reviews with same user ID
-// put - modify a review
+
+// put - modify a review. send the new text body in the req.body
+router.post('/review/:id', async (req, res) =>{
+
+  // get the review from the id
+  let review = await Review.findOne({_id: req.params.id})
+  let newBody = req.body
+
+  try {
+    
+    // modify the review by changing out the reviewBody
+    // then save it
+    res.send(reviews)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+// router.put('/comments', async (request, response, next) => {
+//   const { text, userId, postId } = request.body
+//   const comment = {
+//     text: text,
+//     author: userId,
+//   }
+//   const populateQuery = [
+//     { path: 'comments.author', select: ['username', 'profile_image'] },
+//   ]
+//   Post.findByIdAndUpdate(
+//     postId,
+//     {
+//       $push: { comments: comment },
+//     },
+//     {
+//       new: true,
+//     }
+//   )
+//     .populate(populateQuery)
+//     .exec((err, result) => {
+//       if (err) {
+//         next(err)
+//       } else {
+//         response.json(result)
+//       }
+//     })
+// })
+
+
+
 // delete - delete a review
 
 
