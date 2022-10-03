@@ -14,7 +14,8 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   useEffect(() => {
     const getReviews = async() => {
         try {
-            const response = await axios.post(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
+            const response = await axios.get(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
+            console.log(response)
             setReviews(...reviews, response.data);
         } catch (error) {
             console.log(error);
