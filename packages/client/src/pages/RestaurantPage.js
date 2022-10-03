@@ -26,7 +26,7 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   return (
     <>
       <Header user={user} setUser={setUser}/>
-      <RestaurantProfile restaurant={restaurant} reviews={reviews}/>
+      <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews}/>
       <ReviewList reviews={reviews}/>
     </>
   )
