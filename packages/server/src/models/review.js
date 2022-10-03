@@ -1,19 +1,22 @@
 import mongoose from "mongoose";
-const { ObjectId } = mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types;
 
-const reviewSchema = new mongoose.Schema (
+const reviewSchema = new mongoose.Schema(
   {
     author: {
       type: String,
-      ref: 'User'
+      ref: "User",
     },
     restaurantID: {
       type: String,
-      required: true
+      required: true,
     },
     reviewBody: {
       type: String,
       required: true,
+    },
+    filePath: {
+      type: String,
     },
     rating: {
       type: Number,
@@ -21,14 +24,14 @@ const reviewSchema = new mongoose.Schema (
     },
     created: {
       type: Date,
-      default: Date.now
-    }
+      default: Date.now,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
-)
+);
 
-const Review = mongoose.model('Review', reviewSchema)
+const Review = mongoose.model("Review", reviewSchema);
 
-export default Review
+export default Review;

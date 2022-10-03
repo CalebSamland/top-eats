@@ -4,6 +4,7 @@ import User from "../models/users.js";
 import Review from "../models/review.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import fileUpload from "express-fileupload";
 
 const router = Router();
 
@@ -133,69 +134,78 @@ router.get("/getUser", async (req, res) => {
   res.status(200).json({ result });
 });
 
-router
-  .get("/user/fileUpload", async (req, res) => {
-    res.status(200).send("file-upload endpoint");
-  })
-  .post("/user/fileUpload", async (req, res) => {
-    res.status(200).send(res.data);
-  });
-
+router.post("/fileUpload", async (req, res) => {
+  res.status(200).json(res.data);
+});
+router.get("/fileUpload", async (req, res) => {
+  res.status(200).json(res.data);
+});
 
 // Routes for reviews
 // post - make a new rewiev
 
-router.post('/newReview', async (req, res) => {
-
-  //req.body shoudl contain userID, restaurantID, text, rating. 
+router.post("/newReview", async (req, res) => {
+  //req.body shoudl contain userID, restaurantID, text, rating.
   // SHoudl add the date on the backend
   // db should add the review id automatically as well
-  const {
-    userID,
-    text,
-    rating,
-    restaurantID
-  } = req.body
+  const { userID, text, rating, restaurantID, filePath } = req.body;
 
   try {
     const result = await Review.create({
       author: userID,
       reviewBody: text,
       rating: rating,
-      restaurantID: restaurantID
-    })
-    res.status(200).json({result})
+      restaurantID: restaurantID,
+      filePath: filePath,
+    });
+    res.status(200).json({ result });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // post - get all reviews with the same restaurant ID
 
-router.post('/restaurantReviews/:id', async (req, res) =>{
+router.post("/restaurantReviews/:id", async (req, res) => {
   try {
-
-    const reviews = await Review.find({restaurantID: req.params.id})
-    res.send(reviews)
+    const reviews = await Review.find({ restaurantID: req.params.id });
+    res.send(reviews);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
+});
 
-
-})
-
-router.post('/userReviews/:id', async (req, res) =>{
+router.post("/userReviews/:id", async (req, res) => {
   try {
-    const reviews = await Review.find({userID: req.params.id})
-    res.send(reviews)
+    const reviews = await Review.find({ userID: req.params.id });
+    res.send(reviews);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
+
+router.post("/photos", fileUpload(), async (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).json({ error: "No files selected." });
+  }
+  const receivedFile = req.files.file;
+  const uploadPath =
+    path.join(__dirname, "../") + "public/" + receivedFile.name;
+
+  receivedFile.mv(uploadPath, function(err) {
+    if (err) {
+      return res.status(400).json({ error: err });
+    }
+    res.status(200).json({ message: "Success!" });
+  });
+});
+
+router.get("/photos", async (req, res) => {
+  res.status(200).send(req.body);
+});
 
 // get - get all reviews with same user ID
 // put - modify a review
 // delete - delete a review
-
 
 export default router;

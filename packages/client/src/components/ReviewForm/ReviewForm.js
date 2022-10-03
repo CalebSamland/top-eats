@@ -12,17 +12,24 @@ import {
 } from "react-bootstrap";
 import "../ReviewForm/ReviewForm.css";
 
-const ReviewForm = ({user}) => {
+const initialState = {
+  rating: 0,
+  reviewBody: "",
+  photos: [],
+};
+
+const ReviewForm = ({ user }) => {
   const starsArray = [1, 2, 3, 4, 5];
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState();
   const [show, setShow] = useState(false);
+  const [data, setData] = useState();
 
-  console.log(user)
+  console.log(user);
 
   const handleChange = (event) => {
-    setFile(event.target.files[0]);
+    setFile(event.target.files);
   };
 
   const handleUpload = (event) => {
@@ -31,23 +38,63 @@ const ReviewForm = ({user}) => {
     formData.append("file", file);
     formData.append("fileName", file.name);
 
-    const options = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
     axios
-      .post("/user/fileUpload", formData, options)
+      .post("http://localhost:3001/api/newReview", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
       .then((response) => {
+        // setFile((response.data = [...file]));
         console.log(response.data);
+        console.log(file);
+        console.log("Uploaded Successfully");
       })
       .catch((error) => {
         console.log(error);
+        console.log("Something went wrong...");
       });
 
     handleClose();
+
+    // const getPhotos = async () => {
+    //   try {
+    //     const userUpload = await axios.get("http://localhost:3001/api/photos");
+    //     setData(...file, userUpload.data);
+    //     console.log(data);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // getPhotos();
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   setData({
+  //     ...data,
+  //     rating: data.rating,
+  //     reviewBody: data.reviewBody,
+  //     photos: data.photos,
+  //   });
+
+  //   axios
+  //     .put("/restaurant/reviews", {
+  //       text: data.reviewBody,
+  //     })
+  //     .then(
+  //       ({ data }) => {
+  //         setData(initialState);
+  //         console.log(data);
+  //       },
+  //       (error) => {
+  //         console.log("axios error", error);
+  //       }
+  //     );
+  //   console.log(data);
+  //   console.log(user);
+  // };
 
   const handleOpen = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -105,6 +152,11 @@ const ReviewForm = ({user}) => {
           >
             Add Photos
           </Button>
+          {file > 0 ? (
+            <div>
+              <img src="istockphoto-184276818-612x612.jpeg" />
+            </div>
+          ) : null}
           <Button
             variant="success"
             style={{
@@ -122,7 +174,7 @@ const ReviewForm = ({user}) => {
               <Modal.Title>Upload photos</Modal.Title>
             </Modal.Header>
             <Modal.Body className="text-black">
-              <Form.Group controlId="image-url">
+              <Form.Group controlId="image-url" onSubmit={handleUpload}>
                 <Form.Label>Image URL</Form.Label>
                 <InputGroup>
                   <Form.Control
@@ -137,13 +189,14 @@ const ReviewForm = ({user}) => {
             <Modal.Footer>
               <Button
                 variant="success"
-                onClick={handleUpload}
+                type="submit"
                 style={{
                   display: "flex",
                   height: "30px",
                   width: "100px",
                   alignItems: "center",
                 }}
+                onClick={handleUpload}
               >
                 Upload
               </Button>

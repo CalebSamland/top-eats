@@ -22,17 +22,14 @@
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
+    "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
-<<<<<<< HEAD
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.8"
-=======
-    "react-bootstrap-star-rating": "^0.0.2",
-    "react-router-dom": "^6.3.0"
->>>>>>> development
   }
 }

@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     profile_image: {
       type: String,
       required: false,
-      default: "packages/client/public/defaultavatar.jpeg"
+      default: "packages/client/public/defaultavatar.jpeg",
     },
     birthday: {
       type: String,
@@ -39,6 +39,9 @@ const userSchema = new mongoose.Schema(
     reviews: [
       {
         type: ObjectId,
+      },
+      {
+        photos: [],
       },
     ],
     savedRestaurants: [
