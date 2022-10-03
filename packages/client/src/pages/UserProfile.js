@@ -12,7 +12,7 @@ import Review from '../components/Review/Review';
 const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
 
-  const {firstName, lastName, email, birthday, reviews, zip, profile_image, savedRestaurants} = user.result;
+  const {firstName, lastName, email, birthday, reviews, zip, profile_image} = user.result;
 
   const [userData, setUserData] = useState({
     firstName,
@@ -22,7 +22,6 @@ const UserProfile = ({ user, setUser }) => {
     reviews,
     zip,
     profile_image,
-    savedRestaurants,
   })
 
   return (

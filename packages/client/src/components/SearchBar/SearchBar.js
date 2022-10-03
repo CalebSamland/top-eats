@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Form, Button, Col, Row, Container } from 'react-bootstrap'
+import { Form, Button, Col, Row } from 'react-bootstrap'
 // import { useSearchParams } from "react-router-dom";
 
 const initialState = {
@@ -13,8 +13,6 @@ const initialState = {
 
 const SearchBar = ({restaurants, setRestaurants}) => {
     const [searchInput, setSearchInput] = useState(initialState);
-    const [query, setQuery] = useState()
-
 
     const handleChange = (e) => {
         setSearchInput({
@@ -36,25 +34,6 @@ const SearchBar = ({restaurants, setRestaurants}) => {
 
         
     }
-
-    // useEffect(() => {
-    //   const getRestaurantList = async () => {
-    //     try {
-    //       console.log(searchInput)
-    //       const restaurantListAPI = await axios.post(`http://localhost:3001/api/restaurants`, searchInput)
-    //       setRestaurants(restaurantListAPI.data)
-    //       console.log(restaurantListAPI.data)
-    //       // setPostLoading(false)
-    //     } catch (err) {
-    //       // console.error(err.message)
-    //       // setPostLoading(false)
-    //       // setPostError(true)
-    //     }
-    //   }
-    //   getRestaurantList()
-    //   // console.log(restaurants)
-    // }, [query]) // add correct dependency array []
-    
 
   return (
     <Form style={{margin: '40px 0'}}>

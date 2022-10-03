@@ -1,36 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from "../components/Header/Header";
 import RestaurantProfile from '../components/RestaurantProfile/RestaurantProfile';
 import ReviewList from '../components/ReviewList/ReviewList'
+import axios from 'axios';
 
 const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
+  const [reviews, setReviews] = useState([]);
 
   const location = useLocation()
   const restaurant = location.state.restaurant
-  console.log(restaurant)
 
-  const reviews = [
-    {
-      date: 'March 3, 2022',
-      username: 'bobby',
-      rating: 4,
-      text: 'pretty good food',
-      photos: ['https://thumbs.dreamstime.com/b/healthy-food-selection-healthy-food-selection-fruits-vegetables-seeds-superfood-cereals-gray-background-121936825.jpg']
-    },
-    {
-    date: 'September 12, 2022',
-    username: 'robby',
-    rating: 1,
-    text: 'pretty horrible food',
-    photos: ['https://isitbadforyou.s3.amazonaws.com/uploads/article/pictures/949/big_is_burnt_food_bad_for_you.jpg']
-  }
-  ]
+  useEffect(() => {
+    const getReviews = async() => {
+        try {
+            const response = await axios.post(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
+            setReviews(...reviews, response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getReviews();
+  }, [])
 
   return (
     <>
       <Header user={user} setUser={setUser}/>
-      <RestaurantProfile restaurant={restaurant} />
+      <RestaurantProfile restaurant={restaurant} reviews={reviews}/>
       <ReviewList reviews={reviews}/>
     </>
   )
