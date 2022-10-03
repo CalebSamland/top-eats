@@ -204,8 +204,49 @@ router.get("/photos", async (req, res) => {
   res.status(200).send(req.body);
 });
 
-// get - get all reviews with same user ID
-// put - modify a review
+// put - modify a review. send the new text body in the req.body
+router.post("/review/:id", async (req, res) => {
+  // get the review from the id
+  let review = await Review.findOne({ _id: req.params.id });
+  let newBody = req.body;
+
+  try {
+    // modify the review by changing out the reviewBody
+    // then save it
+    res.send(reviews);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// router.put('/comments', async (request, response, next) => {
+//   const { text, userId, postId } = request.body
+//   const comment = {
+//     text: text,
+//     author: userId,
+//   }
+//   const populateQuery = [
+//     { path: 'comments.author', select: ['username', 'profile_image'] },
+//   ]
+//   Post.findByIdAndUpdate(
+//     postId,
+//     {
+//       $push: { comments: comment },
+//     },
+//     {
+//       new: true,
+//     }
+//   )
+//     .populate(populateQuery)
+//     .exec((err, result) => {
+//       if (err) {
+//         next(err)
+//       } else {
+//         response.json(result)
+//       }
+//     })
+// })
+
 // delete - delete a review
 
 export default router;
