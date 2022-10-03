@@ -168,10 +168,10 @@ router.post('/newReview', async (req, res) => {
 
 // this works just fine, because the restaurant id is within the reviews
 
-router.post('/restaurantReviews/:restaurantID', async (req, res) =>{
+router.get('/restaurantReviews/:restaurantID', async (req, res) =>{
   try {
 
-    const reviews = await Review.find({restaurantID: req.params.id})
+    const reviews = await Review.find({restaurantID: req.params.restaurantID})
     res.send(reviews)
   } catch (error) {
     console.log(error)

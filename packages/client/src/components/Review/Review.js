@@ -9,7 +9,7 @@ const Review = ({ review }) => {
   const [username, setUsername] = useState('');
   const userID = review.author;
   const date = getFormattedDate(review.createdAt);
-
+  
   useEffect(() => {
     const getUsername = async() => {
         try {
