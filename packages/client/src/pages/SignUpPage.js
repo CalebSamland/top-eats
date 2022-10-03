@@ -17,6 +17,8 @@ const SignUpPage = ({ setUser }) => {
         error: '',
     });
 
+    const navigate = useNavigate();
+
     const inputs = [
         {
             id: 1,
@@ -101,6 +103,7 @@ const SignUpPage = ({ setUser }) => {
                 setData({...data, error: "An account already exists with that email"});
             } else {
                 setUser(result.data);
+                navigate("/");
             }
         } catch (error) {
             console.log(error);

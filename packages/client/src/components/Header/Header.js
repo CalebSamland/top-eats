@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Button,
   Container,
   Image,
   Navbar,
   Nav,
-  Row,
-  Col,
-  Figure,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import UserProfile from "../../pages/UserProfile";
+import { Link, useNavigate } from "react-router-dom";
 import defaultAvatar from "../../Images/defaultavatar.jpeg";
 
 const Header = ({ user, setUser }) => {
@@ -20,9 +15,12 @@ const Header = ({ user, setUser }) => {
   //     lastName: 'Smith',
   //     userName: 'bobster'
   //   })
+  
+  const navigate = useNavigate();
 
   const logout = () => {
     setUser(null);
+    navigate("/");
   };
   return (
     <Navbar bg="secondary" variant="dark">
@@ -34,6 +32,7 @@ const Header = ({ user, setUser }) => {
           <Nav className="justify-content-end">
             <Nav.Link onClick={() => logout()}>Logout</Nav.Link>
             <Image />
+            <Nav.Link as={Link} to="/userProfile">User Profile</Nav.Link>
           </Nav>
         ) : (
           <Nav>

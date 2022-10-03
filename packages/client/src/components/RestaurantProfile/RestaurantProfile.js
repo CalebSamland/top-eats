@@ -4,11 +4,12 @@ import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
 // import StarRating from "react-bootstrap-star-rating";
 
-const RestaurantProfile = ({ restaurant }) => {
+const RestaurantProfile = ({ restaurant, reviews }) => {
   // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
   const id = restaurant.id;
   const [details, setDetails] = useState();
-  console.log(details);
+  const totalRating = reviews.map(review => review.rating).reduce((curr, acc) => curr + acc, 0);
+  const averageRating = (totalRating / reviews.length).toFixed(1);
 
   useEffect(() => {
     const getDetails = async () => {
@@ -48,14 +49,14 @@ const RestaurantProfile = ({ restaurant }) => {
                 step={0.5}
                 style={{ height: "50px", width: "50px" }}
               /> */}
-              Rating: {details.rating} / {details.review_count} reviews
+              Rating: {averageRating === "NaN" ? "No Rating": averageRating} / {reviews.length} reviews
             </Card.Text>
 
             {details.hours ? (
               <>
                 <h2>Hours:</h2>
                 <p>
-                  {details.hours[0].open.map((day) => {
+                  {details.hours[0].open.map((day, i) => {
                     const days = [
                       "Sunday",
                       "Monday",
@@ -66,7 +67,7 @@ const RestaurantProfile = ({ restaurant }) => {
                       "Saturday",
                     ];
                     return (
-                      <div>
+                      <div key={i}>
                         {days[day.day]}: {day.start} to {day.end}
                       </div>
                     );
@@ -78,11 +79,12 @@ const RestaurantProfile = ({ restaurant }) => {
             )}
             <h3>Photos</h3>
             <p>
-              {details.photos.map((photo) => {
+              {details.photos.map((photo, i) => {
                 return (
                   <Card.Img
                     style={{ width: "300px", margin: "20px" }}
                     src={photo}
+                    key={i}
                   />
                 );
               })}
