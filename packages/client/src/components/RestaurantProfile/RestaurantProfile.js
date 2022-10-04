@@ -4,15 +4,13 @@ import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
 // import StarRating from "react-bootstrap-star-rating";
 
-<<<<<<< HEAD
-const RestaurantProfile = ({ restaurant, user }) => {
-=======
-const RestaurantProfile = ({ restaurant, reviews }) => {
->>>>>>> development
+const RestaurantProfile = ({ restaurant, reviews, user }) => {
   // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
   const id = restaurant.id;
   const [details, setDetails] = useState();
-  const totalRating = reviews.map(review => review.rating).reduce((curr, acc) => curr + acc, 0);
+  const totalRating = reviews
+    .map((review) => review.rating)
+    .reduce((curr, acc) => curr + acc, 0);
   const averageRating = (totalRating / reviews.length).toFixed(1);
 
   useEffect(() => {
@@ -53,7 +51,8 @@ const RestaurantProfile = ({ restaurant, reviews }) => {
                 step={0.5}
                 style={{ height: "50px", width: "50px" }}
               /> */}
-              Rating: {averageRating === "NaN" ? "No Rating": averageRating} / {reviews.length} reviews
+              Rating: {averageRating === "NaN" ? "No Rating" : averageRating} /{" "}
+              {reviews.length} reviews
             </Card.Text>
 
             {details.hours ? (
@@ -99,7 +98,7 @@ const RestaurantProfile = ({ restaurant, reviews }) => {
         ""
       )}
       <div>
-        <ReviewForm user={user}/>
+        <ReviewForm user={user} />
       </div>
     </Container>
   );
