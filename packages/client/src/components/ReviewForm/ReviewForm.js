@@ -22,7 +22,7 @@ const [reviews, setReviews] = useState(null)
   const initialState = {
     userID: user.result._id,
     text: '',
-    rating: 5, // needs to be fixed 
+    rating: null, // needs to be fixed 
     restaurantID: restaurant.id
   }
 
@@ -42,9 +42,10 @@ const [reviews, setReviews] = useState(null)
     //   toast.error('Post text is required');
     //   setValidated(true)
     //   return
+    console.log(rating)
     setReviewData({
       ...reviewData,
-      rating: rating
+      [rating]: rating
       // rating: rating
       // isSubmitting: true,
       // errorMessage: null,
@@ -81,22 +82,37 @@ const [reviews, setReviews] = useState(null)
       // )
   }
 
-  useEffect(() => {
-    const getReviews = async () => {
-      try {
-        console.log(reviewData)
-        const allReviews = await axios.post(`/restaurantReviews/${restaurant.id}`)
-        // setPosts(allPosts.data)
-        // setPostLoading(false)
-      } catch (err) {
-        console.error(err.message)
-        // setPostLoading(false)
-        // setPostError(true)
-      }
-    }
-    getReviews()
-  }, [])
+  // useEffect(() => {
+  //   const getReviews = async () => {
+  //     try {
+  //       console.log(reviewData)
+  //       const allReviews = await axios.post(`/restaurantReviews/${restaurant.id}`)
+  //       // setPosts(allPosts.data)
+  //       // setPostLoading(false)
+  //     } catch (err) {
+  //       console.error(err.message)
+  //       // setPostLoading(false)
+  //       // setPostError(true)
+  //     }
+  //   }
+  //   getReviews()
+  // }, [])
  // end code copied from snippets
+
+ useEffect(() => {
+  const getRating = async () => {
+    console.log(rating)
+    try {
+      setReviewData({
+        ...reviewData,
+        rating: rating
+      })
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+  getRating()
+ }, [rating])
 
   return (
     <Container>
@@ -107,8 +123,6 @@ const [reviews, setReviews] = useState(null)
           <Form
             onSubmit={handleReviewSubmit}
           >
-
-
           <div
             className="star-rating"
             style={{
@@ -133,9 +147,6 @@ const [reviews, setReviews] = useState(null)
                   setRating(0);
                   setHover(0);
                 }}
-                onChange={handleInputChange}
-                name='rating'
-                value={rating}
                 >
                   <div className="star">&#9733;</div>
                 </button>
