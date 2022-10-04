@@ -30,7 +30,7 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
     <>
       <Header user={user} setUser={setUser}/>
       <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews}/>
-      <ReviewList reviews={reviews}/>
+      <ReviewList reviews={reviews} header={reviews.length > 0 && `Reviews for ${restaurant.name}`}/>
     </>
   )
 }

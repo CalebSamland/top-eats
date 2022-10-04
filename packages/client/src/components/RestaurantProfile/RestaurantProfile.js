@@ -95,7 +95,7 @@ const RestaurantProfile = ({ restaurant, reviews, user }) => {
         ""
       )}
       <div>
-        <ReviewForm user={user} restaurant={restaurant} />
+        {user && <ReviewForm user={user} restaurant={restaurant} />}
       </div>
     </Container>
   );
