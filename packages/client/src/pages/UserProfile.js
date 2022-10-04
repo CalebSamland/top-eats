@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Figure } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
 import Review from '../components/Review/Review';
+import ReviewList from "../components/ReviewList/ReviewList";
+import axios from "axios";
 
 //Photo and review divs would be a map of the stored photos and reviews in user state. If user has no photos or reviews,
 //either display 'No Photos' or 'No Reviews' OR we can create a link of some sort to add a photo or review.
@@ -11,7 +13,7 @@ import Review from '../components/Review/Review';
 
 const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
-
+  const userID = user.result._id;
   const {firstName, lastName, email, birthday, reviews, zip, profile_image} = user.result;
 
   const [userData, setUserData] = useState({
@@ -23,6 +25,19 @@ const UserProfile = ({ user, setUser }) => {
     zip,
     profile_image,
   })
+  const [userReviews, setUserReviews] = useState([]);
+
+  useEffect(() => {
+    const getReviews = async() => {
+        try {
+            const response = await axios.get(`http://localhost:3001/api/userReviews/${userID}`);
+            setUserReviews(...userReviews, response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getReviews();
+  }, [])
 
   return (
     <>
@@ -40,7 +55,7 @@ const UserProfile = ({ user, setUser }) => {
         >
           <Figure.Image src={defaultImage} className="w-100 h-100" />
         </Figure>
-        <div
+         <div
           className="info"
           style={{
             display: "flex",
@@ -53,11 +68,10 @@ const UserProfile = ({ user, setUser }) => {
           <h2>
             {userData.firstName} {userData.lastName}
           </h2>
-          <h6>{email}</h6>
-          <h6>Reviews: {userData.reviews.length}</h6>
-          <h6>Posts: 0</h6>
+          <h6>Email: {email}</h6>
+          <h6>Reviews: {userReviews.length}</h6>
         </div>
-        <div
+        {/*<div
           className="photos"
           style={{
             display: "flex",
@@ -143,7 +157,7 @@ const UserProfile = ({ user, setUser }) => {
               }}
             ></div>
           </Container>
-        </div>
+        </div> */}
         <div
           className="reviews"
           style={{
@@ -154,9 +168,6 @@ const UserProfile = ({ user, setUser }) => {
             alignItems: "center",
           }}
         >
-          <h5>
-            <strong>My Reviews</strong>
-          </h5>
           <Container
             style={{
               display: "flex",
@@ -168,10 +179,8 @@ const UserProfile = ({ user, setUser }) => {
             }}
           >
             {
-                userData.reviews.length > 0 ?
-                userData.reviews.map((review) => (
-                    <Review />
-                ))
+                userReviews.length > 0 ?
+                <ReviewList reviews={userReviews} header={"My Reviews"}/>
                 :
                 <h6>No Reviews</h6>
             }

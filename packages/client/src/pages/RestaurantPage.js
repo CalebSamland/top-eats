@@ -14,15 +14,17 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   useEffect(() => {
     const getReviews = async() => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
-            console.log(response)
-            setReviews(...reviews, response.data);
+            if (reviews.length === 0) {
+                const response = await axios.get(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
+                console.log(response)
+                setReviews(...reviews, response.data)
+        }
         } catch (error) {
             console.log(error);
         }
     }
     getReviews();
-  }, [])
+  }, [reviews])
 
   return (
     <>

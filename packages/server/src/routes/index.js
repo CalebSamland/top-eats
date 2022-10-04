@@ -182,9 +182,9 @@ router.get('/restaurantReviews/:restaurantID', async (req, res) =>{
 // get - get all reviews with same user ID
 // I need to make sure that the userid is stored with the review
 
-router.post('/userReviews/:userID', async (req, res) =>{
+router.get('/userReviews/:userID', async (req, res) =>{
   try {
-    const reviews = await Review.find({author: req.params.id})
+    const reviews = await Review.find({author: req.params.userID})
     res.send(reviews)
   } catch (error) {
     console.log(error)
