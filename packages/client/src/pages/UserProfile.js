@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Figure } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
-import Review from '../components/Review/Review';
+import Review from "../components/Review/Review";
 
 //Photo and review divs would be a map of the stored photos and reviews in user state. If user has no photos or reviews,
 //either display 'No Photos' or 'No Reviews' OR we can create a link of some sort to add a photo or review.
@@ -12,7 +12,15 @@ import Review from '../components/Review/Review';
 const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
 
-  const {firstName, lastName, email, birthday, reviews, zip, profile_image} = user.result;
+  const {
+    firstName,
+    lastName,
+    email,
+    birthday,
+    reviews,
+    zip,
+    profile_image,
+  } = user.result;
 
   const [userData, setUserData] = useState({
     firstName,
@@ -22,12 +30,12 @@ const UserProfile = ({ user, setUser }) => {
     reviews,
     zip,
     profile_image,
-  })
+  });
 
   return (
     <>
+      <Header user={user} setUser={setUser} />
       <Container>
-        <Header user={user} setUser={setUser}/>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
           style={{
@@ -49,7 +57,6 @@ const UserProfile = ({ user, setUser }) => {
             alignItems: "center",
           }}
         >
-          <p>Edit Profile Picture</p>
           <h2>
             {userData.firstName} {userData.lastName}
           </h2>
@@ -67,7 +74,7 @@ const UserProfile = ({ user, setUser }) => {
             alignItems: "center",
           }}
         >
-          <h5>
+          <h5 style={{ marginBottom: "20px" }}>
             <strong>Photos</strong>
           </h5>
           <Container
@@ -84,6 +91,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -91,6 +99,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -98,6 +107,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -105,6 +115,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -112,6 +123,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -119,6 +131,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -126,6 +139,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
             <div
@@ -133,13 +147,7 @@ const UserProfile = ({ user, setUser }) => {
                 height: "175px",
                 width: "175px",
                 border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
+                borderRadius: "10px",
               }}
             ></div>
           </Container>
@@ -154,7 +162,7 @@ const UserProfile = ({ user, setUser }) => {
             alignItems: "center",
           }}
         >
-          <h5>
+          <h5 style={{ marginBottom: "20px" }}>
             <strong>My Reviews</strong>
           </h5>
           <Container
@@ -167,14 +175,11 @@ const UserProfile = ({ user, setUser }) => {
               marginBottom: "100px",
             }}
           >
-            {
-                userData.reviews.length > 0 ?
-                userData.reviews.map((review) => (
-                    <Review />
-                ))
-                :
-                <h6>No Reviews</h6>
-            }
+            {userData.reviews.length > 0 ? (
+              userData.reviews.map((review) => <Review />)
+            ) : (
+              <h6>No Reviews</h6>
+            )}
           </Container>
         </div>
       </Container>
