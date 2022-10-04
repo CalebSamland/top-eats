@@ -17,7 +17,7 @@ const ReviewForm = ({ restaurant, user }) => {
 
 // Code copied from snippets
 
-const [reviews, setReviews] = useState(null)
+// const [reviews, setReviews] = useState(null)
 
   const initialState = {
     userID: user.result._id,
