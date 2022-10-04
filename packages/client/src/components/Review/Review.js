@@ -34,7 +34,7 @@ const Review = ({ review }) => {
 
   return (
       <Card style={{margin: '20px auto'}}>
-        <Card.Header>@{username} | {date}</Card.Header>
+        <Card.Header>{username} | {date}</Card.Header>
         <Card.Body>
           <Card.Title>{restaurantName}</Card.Title>
           <Card.Text>Rating: {review.rating}/5</Card.Text>

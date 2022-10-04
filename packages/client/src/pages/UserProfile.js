@@ -41,8 +41,8 @@ const UserProfile = ({ user, setUser }) => {
 
   return (
     <>
-      <Container>
         <Header user={user} setUser={setUser}/>
+      <Container>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
           style={{
