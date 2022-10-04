@@ -24,7 +24,7 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
         }
     }
     getReviews();
-  }, [reviews])
+  }, [])
 
   return (
     <>
