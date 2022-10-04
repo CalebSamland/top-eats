@@ -5,7 +5,7 @@ import {
   Navbar,
   Nav,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import defaultAvatar from "../../Images/defaultavatar.jpeg";
 
 const Header = ({ user, setUser }) => {
@@ -17,10 +17,13 @@ const Header = ({ user, setUser }) => {
   //   })
   
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logout = () => {
     setUser(null);
-    navigate("/");
+    if (location.pathname === "/userProfile") {
+        navigate("/");
+    }
   };
   return (
     <Navbar bg="secondary" variant="dark">

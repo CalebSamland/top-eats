@@ -33,7 +33,7 @@ const SignInPage = ({setUser}) => {
                 setData({...data, error: "Incorrect password"});
             } else {
                 setUser(result.data);
-                navigate("/");
+                navigate(-1);
             }
         } catch (error) {
             setData({...data, error: error});

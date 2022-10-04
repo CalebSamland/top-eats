@@ -103,7 +103,7 @@ const SignUpPage = ({ setUser }) => {
                 setData({...data, error: "An account already exists with that email"});
             } else {
                 setUser(result.data);
-                navigate("/");
+                navigate(-1);
             }
         } catch (error) {
             console.log(error);
