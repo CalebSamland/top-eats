@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Figure } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
-import Review from '../components/Review/Review';
+import Review from "../components/Review/Review";
 import ReviewList from "../components/ReviewList/ReviewList";
 import axios from "axios";
 
@@ -14,7 +14,15 @@ import axios from "axios";
 const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
   const userID = user.result._id;
-  const {firstName, lastName, email, birthday, reviews, zip, profile_image} = user.result;
+  const {
+    firstName,
+    lastName,
+    email,
+    birthday,
+    reviews,
+    zip,
+    profile_image,
+  } = user.result;
 
   const [userData, setUserData] = useState({
     firstName,
@@ -24,24 +32,26 @@ const UserProfile = ({ user, setUser }) => {
     reviews,
     zip,
     profile_image,
-  })
+  });
   const [userReviews, setUserReviews] = useState([]);
 
   useEffect(() => {
-    const getReviews = async() => {
-        try {
-            const response = await axios.get(`http://localhost:3001/api/userReviews/${userID}`);
-            setUserReviews(...userReviews, response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const getReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/api/userReviews/${userID}`
+        );
+        setUserReviews(...userReviews, response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getReviews();
-  }, [])
+  }, []);
 
   return (
     <>
-        <Header user={user} setUser={setUser}/>
+      <Header user={user} setUser={setUser} />
       <Container>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
@@ -55,7 +65,7 @@ const UserProfile = ({ user, setUser }) => {
         >
           <Figure.Image src={defaultImage} className="w-100 h-100" />
         </Figure>
-         <div
+        <div
           className="info"
           style={{
             display: "flex",
@@ -178,12 +188,11 @@ const UserProfile = ({ user, setUser }) => {
               marginBottom: "100px",
             }}
           >
-            {
-                userReviews.length > 0 ?
-                <ReviewList reviews={userReviews} header={"My Reviews"}/>
-                :
-                <h6>No Reviews</h6>
-            }
+            {userReviews.length > 0 ? (
+              <ReviewList reviews={userReviews} header={"My Reviews"} />
+            ) : (
+              <h6>No Reviews</h6>
+            )}
           </Container>
         </div>
       </Container>
