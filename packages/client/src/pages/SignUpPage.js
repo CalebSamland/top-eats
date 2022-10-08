@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from '../components/Header/Header';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import FormInput from "../components/FormInput/FormInput";
 import './SignUpPage.css';
 import axios from "axios"
 
-const SignUpPage = ({ setUser }) => {
+const SignUpPage = ({ setUser, setLastPath }) => {
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
@@ -18,6 +18,11 @@ const SignUpPage = ({ setUser }) => {
     });
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        setLastPath(location.pathname)
+    }, [])
 
     const inputs = [
         {
@@ -103,7 +108,7 @@ const SignUpPage = ({ setUser }) => {
                 setData({...data, error: "An account already exists with that email"});
             } else {
                 setUser(result.data);
-                navigate(-1);
+                navigate("/");
             }
         } catch (error) {
             console.log(error);
