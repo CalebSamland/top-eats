@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import SearchBar from "../components/SearchBar/SearchBar";
+import Header from "../components/Header/Header";
+import RestaurantResults from "../components/RestaurantResults/RestaurantResults";
+import { Container } from 'react-bootstrap'
 
-const HomePage = () => {
+const HomePage = ({restaurants, setRestaurants, user, setUser}) => {
+
   return (
-    <div>HomePage</div>
-  )
-}
+    <>
+      <Header user={user} setUser={setUser}/>
+      <Container style={{maxWidth: '1024px'}}>
+        <SearchBar restaurants={restaurants} setRestaurants={setRestaurants}/>
+        <RestaurantResults  restaurants={restaurants}/>
+      </Container>
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;

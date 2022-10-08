@@ -4,12 +4,12 @@
  * Module dependencies.
  */
 
-import app from "../app.js";
+import app from '../app.js'
 // import debug from "server";
 import http from "http";
 import chalk from "chalk"
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import "core-js/stable/index.js";
+import "regenerator-runtime";
 import { PORT } from "../configs/index.js";
 
 
