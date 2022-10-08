@@ -30,7 +30,7 @@ const Review = ({ review }) => {
     }
     getUsername();
     getRestaurantName();
-  }, [])
+  }, [review])
 
   return (
       <Card style={{margin: '20px auto'}}>
