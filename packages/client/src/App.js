@@ -20,7 +20,7 @@ function App() {
           <Route exact path='/' element={ <HomePage user={user} setUser={setUser} restaurants={restaurants} setRestaurants={setRestaurants} /> } />
           <Route exact path='/restaurant/:id' element={ <RestaurantPage restaurants={restaurants} setRestaurants={setRestaurants} user={user} setUser={setUser}/> } />
           <Route exact path='/signup' element={ <SignUpPage setUser={setUser} setLastPath={setLastPath}/> } />
-          <Route exact path='/signin' element={ <SignInPage setUser={setUser} lastPath={lastPath}/> } />
+          <Route exact path='/signin' element={ <SignInPage setUser={setUser} lastPath={lastPath} setLastPath={setLastPath}/> } />
           <Route exact path='/userProfile' element={ <UserProfile user={user} setUser={setUser} /> } />
       </Routes>
     </>

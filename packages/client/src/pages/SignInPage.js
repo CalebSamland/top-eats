@@ -10,7 +10,7 @@ const initialState = {
     error: ''
 }
 
-const SignInPage = ({setUser, lastPath}) => {
+const SignInPage = ({setUser, lastPath, setLastPath}) => {
     const [data, setData] = useState(initialState);
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,6 +37,7 @@ const SignInPage = ({setUser, lastPath}) => {
                 setUser(result.data);
                 if (lastPath === "/signup") {
                     navigate("/");
+                    setLastPath("");
                 } else {
                     navigate(-1);
                 }
