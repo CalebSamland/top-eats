@@ -14,11 +14,9 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   useEffect(() => {
     const getReviews = async() => {
         try {
-            if (reviews.length === 0) {
-                const response = await axios.get(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
-                console.log(response)
-                setReviews(...reviews, response.data)
-        }
+            const response = await axios.get(`http://localhost:3001/api/restaurantReviews/${restaurant.id}`);
+            console.log(response)
+            setReviews(...reviews, response.data)
         } catch (error) {
             console.log(error);
         }
@@ -29,7 +27,7 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   return (
     <>
       <Header user={user} setUser={setUser}/>
-      <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews}/>
+      <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews.reverse()} setReviews={setReviews}/>
       <ReviewList reviews={reviews} header={reviews.length > 0 && `Reviews for ${restaurant.name}`}/>
     </>
   )
