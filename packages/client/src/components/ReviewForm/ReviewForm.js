@@ -12,7 +12,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer, toast } from "react-toastify";
 
-const ReviewForm = ({ restaurant, user }) => {
+const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
   const starsArray = [1, 2, 3, 4, 5];
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -92,37 +92,37 @@ const ReviewForm = ({ restaurant, user }) => {
       // errorMessage: null,
     });
     // }
-    console.log(reviewData);
-    console.log(rating);
-
-    axios.post("http://localhost:3001/api/newReview", reviewData);
-
-    // .then(
-    //   (res) => {
-    //     setReviewData(initialState)
-    //     setReviews((reviews) => [
-    //       {
-    //         ...res.data,
-    //         // author: {
-    //         //   username: user.username,
-    //         //   profile_image: user.profile_image,
-    //         // },
-    //       },
-    //       ...reviews,
-    //     ])
-    //     // setValidated(false)
-    //   },
-    //   (error) => {
-    //     console.log(error)
-    //     setReviewData({
-    //       ...reviewData,
-    //       // isSubmitting: false,
-    //       // errorMessage: error.message,
-    //     })
-    //   }
-    // )
-  };
-
+    console.log(reviewData)
+    console.log(rating)
+    axios
+      .post('http://localhost:3001/api/newReview', reviewData)
+      .then(
+        (res) => {
+          setReviewData(initialState)
+          setReviews(() => [
+            ...reviews.reverse(),
+            {
+                reviewBody: reviewData.text,
+                rating: reviewData.rating,
+                author: reviewData.userID,
+                restaurantID: reviewData.restaurantID,
+                createdAt: new Date()
+            },
+          ])
+          setReviewData(initialState);
+          setRating(0);
+          setHover(0);
+        },
+        (error) => {
+          console.log(error)
+          setReviewData({
+            ...reviewData,
+            // isSubmitting: false,
+            // errorMessage: error.message,
+          })
+        }
+      )
+  }
   // useEffect(() => {
   //   const getReviews = async () => {
   //     try {

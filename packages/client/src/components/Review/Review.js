@@ -39,7 +39,8 @@ const Review = ({ review }) => {
     getUsername();
     getRestaurantName();
     setRating(review.rating);
-  }, []);
+  }, [review]);
+  
   return (
     <Card style={{ margin: "20px auto" }}>
       <Card.Header>
