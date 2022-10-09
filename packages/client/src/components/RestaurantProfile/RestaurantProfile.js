@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
 // import StarRating from "react-bootstrap-star-rating";
+import InactiveReviewForm from "../InactiveReviewForm/InactiveReviewForm";
 
 const RestaurantProfile = ({ restaurant, reviews, user }) => {
   // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
@@ -139,7 +140,13 @@ const RestaurantProfile = ({ restaurant, reviews, user }) => {
       ) : (
         ""
       )}
-      <div>{user && <ReviewForm user={user} restaurant={restaurant} />}</div>
+      <div>
+        {user ? (
+          <ReviewForm user={user} restaurant={restaurant} />
+        ) : (
+          <InactiveReviewForm />
+        )}
+      </div>
     </Container>
   );
 };

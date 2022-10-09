@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import Header from '../components/Header/Header'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const initialState = {
@@ -10,9 +10,11 @@ const initialState = {
     error: ''
 }
 
-const SignInPage = ({setUser}) => {
+const SignInPage = ({setUser, lastPath, setLastPath}) => {
     const [data, setData] = useState(initialState);
     const navigate = useNavigate();
+    const location = useLocation();
+
 
     const handleChange = e => {
         setData({
@@ -33,7 +35,12 @@ const SignInPage = ({setUser}) => {
                 setData({...data, error: "Incorrect password"});
             } else {
                 setUser(result.data);
-                navigate(-1);
+                if (lastPath === "/signup") {
+                    navigate("/");
+                    setLastPath("");
+                } else {
+                    navigate(-1);
+                }
             }
         } catch (error) {
             setData({...data, error: error});
