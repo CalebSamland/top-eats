@@ -49,6 +49,8 @@ const UserProfile = ({ user, setUser }) => {
     getReviews();
   }, []);
 
+  console.log(userReviews);
+
   return (
     <>
       <Header user={user} setUser={setUser} />
@@ -74,7 +76,6 @@ const UserProfile = ({ user, setUser }) => {
             alignItems: "center",
           }}
         >
-          <p>Edit Profile Picture</p>
           <h2>
             {userData.firstName} {userData.lastName}
           </h2>
