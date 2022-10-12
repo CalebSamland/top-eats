@@ -50,9 +50,9 @@ const SignInPage = ({setUser, lastPath, setLastPath}) => {
     return ( 
       <>
         <Header />
-        <Container style={{textAlign: 'center', height: '1000px', width: '100%'}}>
+        <Container style={{textAlign: 'center', width: '100%', maxWidth: '1024px'}}>
             <h3>Sign In</h3>
-            <Form style={{height: '100vh', width: '300px', margin: '0 auto'}} onSubmit={handleSubmit}>
+            <Form style={{width: '300px', margin: '50px auto'}} onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control type='email' name='email' value={data.email} onChange={handleChange} required/>

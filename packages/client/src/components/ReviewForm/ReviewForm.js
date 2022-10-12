@@ -157,7 +157,6 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
 
   return (
     <>
-      <Container>
         <Card style={{ padding: "25px", marginTop: "30px" }}>
           <Card.Title style={{ fontSize: "24px" }}>Write a Review</Card.Title>
           <Card.Body style={{ marginLeft: "-15px" }}>
@@ -197,9 +196,9 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
               </div>
               <FloatingLabel label="Your Review Here">
                 <FormControl
-                  as="textarea"
+                  // as="textarea"
                   placeholder="Your review here."
-                  style={{ height: "150px" }}
+                  style={{ height: "150px", width: '50vw', maxWidth: '900px'}}
                   name="text"
                   value={reviewData.text}
                   onChange={handleInputChange}
@@ -232,7 +231,7 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
             </Form>
           </Card.Body>
         </Card>
-      </Container>
+      
       <ToastContainer
         position="top-right"
         autoClose={5000}

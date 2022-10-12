@@ -37,9 +37,9 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
     // console.log(restaurants)
   }, []); // add correct dependency array []
   return (
-    <Container>
+  <>
       {details ? (
-        <Card>
+        <Card  style={{border: '1px solid red'}}>
           <Card.Body>
             <Card.Title style={{ fontSize: "48px" }}>{details.name}</Card.Title>
             <Card.Subtitle style={{ fontSize: "20px" }}>
@@ -146,7 +146,7 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
 
         
       </div>
-    </Container>
+   </>
   );
 };
 
