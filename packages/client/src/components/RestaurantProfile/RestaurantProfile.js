@@ -34,12 +34,12 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
       }
     };
     getDetails();
-    // console.log(restaurants)
+   
   }, []); // add correct dependency array []
   return (
   <>
       {details ? (
-        <Card  style={{border: '1px solid red'}}>
+        <Card style={{marginTop: '30px'}}>
           <Card.Body>
             <Card.Title style={{ fontSize: "48px" }}>{details.name}</Card.Title>
             <Card.Subtitle style={{ fontSize: "20px" }}>
@@ -50,13 +50,7 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               {details.phone ? `Phone: ${details.phone}` : ""}
             </Card.Text>
             <Card.Text>
-              {/* <StarRating
-                defaultValue={5}
-                min={0}
-                max={5}
-                step={0.5}
-                style={{ height: "50px", width: "50px" }}
-              /> */}
+             
               Rating:{" "}
               {averageRating === "NaN" ? (
                 "No Rating"
@@ -124,17 +118,17 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               ""
             )}
             <h3>Photos</h3>
-            <p>
+            <Container style={{margin: '0 auto'}}>
               {details.photos.map((photo, i) => {
                 return (
                   <Card.Img
-                    style={{ width: "300px", margin: "20px" }}
+                    style={{ width: "200px", height: '200px', objectFit: 'cover', margin: "20px" }}
                     src={photo}
                     key={i}
                   />
                 );
               })}
-            </p>
+            </Container>
           </Card.Body>
         </Card>
       ) : (

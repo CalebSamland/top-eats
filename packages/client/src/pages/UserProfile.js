@@ -54,7 +54,7 @@ const UserProfile = ({ user, setUser }) => {
   return (
     <>
       <Header user={user} setUser={setUser} />
-      <Container style={{maxWidth: '1024px'}}>
+      <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
           style={{

@@ -28,7 +28,7 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   return (
     <> 
       <Header user={user} setUser={setUser}/>
-      <Container style={{maxWidth: '1024px'}}>
+      <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
         <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews.reverse()} setReviews={setReviews}/>
         <ReviewList reviews={reviews} header={reviews.length > 0 && `Reviews for ${restaurant.name}`}/>
       </Container>

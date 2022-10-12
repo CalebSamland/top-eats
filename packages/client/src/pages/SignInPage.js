@@ -50,7 +50,7 @@ const SignInPage = ({setUser, lastPath, setLastPath}) => {
     return ( 
       <>
         <Header />
-        <Container style={{textAlign: 'center', width: '100%', maxWidth: '1024px'}}>
+        <Container style={{textAlign: 'center', width: '100%', maxWidth: '1024px', minWidth: '400px'}}>
             <h3>Sign In</h3>
             <Form style={{width: '300px', margin: '50px auto'}} onSubmit={handleSubmit}>
                 <Form.Group>

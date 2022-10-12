@@ -68,17 +68,16 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
 
   const Stuff = () => (
     <div id="results-showcase">
-      Showing results for: {capitalize(results.term)} in{" "}
-      {capitalize(results.location)}
+      Showing results for "{capitalize(results.term)}" around "{capitalize(results.location)}"
     </div>
   );
 
   return (
     <>
-      <Container>
+      
         <Form style={{ margin: "40px 0" }}>
-          <Row style={{ width: "100%" }}>
-            <Col xs={5}>
+          <Row style={{ width: "100%"}}>
+            <Col xs={5} style={{padding: '0'}}>
               <Form.Control
                 size="lg"
                 type="text"
@@ -88,7 +87,7 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
                 onChange={handleChange}
               />
             </Col>
-            <Col xs={5}>
+            <Col xs={5} style={{padding: '0 25px'}}>
               <Form.Control
                 size="lg"
                 type="text"
@@ -98,7 +97,7 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
                 onChange={handleChange}
               />
             </Col>
-            <Col xs={2} className="justify-content-center">
+            <Col xs={2} className="justify-content-center" style={{padding: '0'}}>
               <Button
                 as="div"
                 style={{ minWidth: "100%" }}
@@ -113,7 +112,7 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
           </Row>
         </Form>
         {showStuff ? ({ handleSearch }, (<Stuff />)) : ""}
-      </Container>
+     
       <RestaurantResults searchInput={searchInput} />
       {/* <div id="results-showcase">
         Search results for {searchInput.term} in {searchInput.location}

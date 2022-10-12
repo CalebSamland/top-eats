@@ -119,7 +119,7 @@ const SignUpPage = ({ setUser, setLastPath }) => {
     return (
         <div>
             <Header />
-            <Container style={{maxWidth: '1024px'}}>
+            <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
             <form onSubmit={handleSubmit}>
                 <h1 className="signup-header">Sign Up</h1>
                 {inputs.map((input) => (
