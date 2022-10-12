@@ -17,7 +17,6 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
   const [rating, setRating] = useState(0);
 
   console.log(averageRating);
-
   useEffect(() => {
     const getDetails = async () => {
       try {
@@ -36,6 +35,8 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
     getDetails();
    
   }, []); // add correct dependency array []
+  console.log(details);
+
   return (
   <>
       {details ? (
@@ -103,12 +104,29 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
                     return (
                       <div key={i}>
                         {days[day.day]}:{" "}
-                        {day.start.slice(0, 2) + ":" + day.start.slice(2)}am to{" "}
-                        {parseInt(day.end.slice(0, 2)) -
-                          12 +
-                          ":" +
-                          day.end.slice(2)}
-                        pm
+                        {day.start >= "1200"
+                          ? parseInt(day.start.slice(0, 2)) -
+                            12 +
+                            ":" +
+                            day.start.slice(2) +
+                            "pm "
+                          : day.start < "1000"
+                          ? day.start.slice(1, -2) +
+                            ":" +
+                            day.start.slice(2) +
+                            "am "
+                          : day.start.slice(0, 2) +
+                            ":" +
+                            day.start.slice(2) +
+                            "am "}
+                        to{" "}
+                        {day.end == "0000"
+                          ? "12:00am"
+                          : parseInt(day.end.slice(0, 2)) -
+                            12 +
+                            ":" +
+                            day.end.slice(2) +
+                            "pm"}
                       </div>
                     );
                   })}
