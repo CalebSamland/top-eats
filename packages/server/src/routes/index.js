@@ -128,91 +128,105 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/getUser/:id", async (req, res) => {
-   try { 
+  try {
     const result = await User.findOne({ _id: req.params.id });
     res.status(200).json({ result });
-   } catch(error) {
+  } catch (error) {
     res.status(500).json({ message: `${error}` });
-   }
+  }
 });
 
 router.get("/", async (req, res) => {
   res.status(200).send("api endpoint");
 });
 
-
 // Routes for reviews
 // post - make a new rewiev
 
-router.post('/newReview', async (req, res) => {
-
-  //req.body shoudl contain userID, restaurantID, text, rating. 
+router.post("/newReview", async (req, res) => {
+  //req.body shoudl contain userID, restaurantID, text, rating.
   // SHoudl add the date on the backend
   // db should add the review id automatically as well
-  const {
-    userID,
-    text,
-    rating,
-    restaurantID
-  } = req.body
+  const { userID, text, rating, restaurantID } = req.body;
 
   try {
     const result = await Review.create({
       author: userID,
       reviewBody: text,
       rating: rating,
-      restaurantID: restaurantID
-    })
-    res.status(200).json({result})
+      restaurantID: restaurantID,
+    });
+    res.status(200).json({ result });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
 
 // post - get all reviews with the same restaurant ID
 
 // this works just fine, because the restaurant id is within the reviews
 
-router.get('/restaurantReviews/:restaurantID', async (req, res) =>{
+router.get("/restaurantReviews/:restaurantID", async (req, res) => {
   try {
-
-    const reviews = await Review.find({restaurantID: req.params.restaurantID})
-    res.send(reviews)
+    const reviews = await Review.find({
+      restaurantID: req.params.restaurantID,
+    });
+    res.send(reviews);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
-
-})
+});
 // get - get all reviews with same user ID
 // I need to make sure that the userid is stored with the review
 
-router.get('/userReviews/:userID', async (req, res) =>{
+router.get("/userReviews/:userID", async (req, res) => {
   try {
-    const reviews = await Review.find({author: req.params.userID})
-    res.send(reviews)
+    const reviews = await Review.find({ author: req.params.userID });
+    res.send(reviews);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
-
+});
 
 // put - modify a review. send the new text body in the req.body
-router.post('/review/:id', async (req, res) =>{
-
+router.post("/review/:id", async (req, res) => {
   // get the review from the id
-  let review = await Review.findOne({_id: req.params.id})
-  let newBody = req.body
+  let review = await Review.findOne({ _id: req.params.id });
+  let newBody = req.body;
 
   try {
-    
     // modify the review by changing out the reviewBody
     // then save it
-    res.send(reviews)
+    res.send(reviews);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
+});
+
+//Delete a review
+
+// router.delete("/review/:id", async (req, res) => {
+//   const { user } = req;
+//   const review = await Review.findOne({ _id: req.params.id });
+//   console.log(review);
+//   if (!review) {
+//     return res.status(422).json({ error: "Cannot find review" });
+//   }
+//   if (review.author.toString() == user.id.toString()) {
+//     try {
+//       const removedPost = await post.remove();
+
+//       const userUpdate = await User.updateOne(
+//         { _id: user.id },
+//         { $pull: { reviews: reviewId } }
+//       );
+
+//       response.json(removedPost);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// });
 
 // router.put('/comments', async (request, response, next) => {
 //   const { text, userId, postId } = request.body
@@ -242,9 +256,6 @@ router.post('/review/:id', async (req, res) =>{
 //     })
 // })
 
-
-
 // delete - delete a review
-
 
 export default router;
