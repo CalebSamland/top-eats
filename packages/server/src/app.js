@@ -5,7 +5,11 @@ import mongoose from 'mongoose';
 import { API_URL, DB_URL } from './configs/index.js';
 import routes from './routes/index.js';
 
+
+// added after trying to host on ec2 instance
 import * as path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
@@ -20,9 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(API_URL, routes);
 
+// added to host on ec2 instance:
+
 // **Some imports .... **
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // ................ 
 // Other Routes and Code...
 // ...............
