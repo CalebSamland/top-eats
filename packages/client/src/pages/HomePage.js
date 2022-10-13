@@ -8,7 +8,7 @@ const HomePage = ({ restaurants, setRestaurants, user, setUser }) => {
   return (
     <>
       <Header user={user} setUser={setUser} />
-      <Container style={{ maxWidth: "1024px" }}>
+      <Container style={{ maxWidth: "1024px", minWidth: "400px" }}>
         <SearchBar restaurants={restaurants} setRestaurants={setRestaurants} />
         <RestaurantResults restaurants={restaurants} />
       </Container>

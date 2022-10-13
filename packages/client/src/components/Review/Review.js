@@ -45,20 +45,22 @@ const Review = ({ review }) => {
     getUsername();
     getRestaurantName();
     setRating(review.rating);
-  }, []);
-  // console.log(userID);
-  // console.log(reviewID);
-  // const handleDelete = async () => {
-  //   try {
-  //     const response = await axios.delete(
-  //       `http://localhost:3001/api/review/${reviewID}`
-  //     );
 
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+    // console.log(userID);
+    // console.log(reviewID);
+    // const handleDelete = async () => {
+    //   try {
+    //     const response = await axios.delete(
+    //       `http://localhost:3001/api/review/${reviewID}`
+    //     );
+
+    //     console.log(response);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+  }, [review]);
+
   return (
     <>
       <Card style={{ margin: "20px auto" }}>
