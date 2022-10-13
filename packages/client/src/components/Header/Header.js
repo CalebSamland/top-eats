@@ -12,12 +12,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import defaultAvatar from "../../Images/defaultavatar.jpeg";
 
 const Header = ({ user, setUser }) => {
-  // const [user, setUser] = useState(
-  //   {
-  //     firstName: 'Bob',
-  //     lastName: 'Smith',
-  //     userName: 'bobster'
-  //   })
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,7 +24,7 @@ const Header = ({ user, setUser }) => {
   };
   return (
     <Navbar bg="secondary" variant="dark">
-      <Container fluid="lg" style={{ maxWidth: "1024px" }}>
+      <Container fluid="lg" style={{ maxWidth: "1024px"}}>
         <Navbar.Brand as={Link} to="/">
           Top Eats
         </Navbar.Brand>

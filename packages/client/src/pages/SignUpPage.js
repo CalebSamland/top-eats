@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FormInput from "../components/FormInput/FormInput";
 import './SignUpPage.css';
 import axios from "axios"
+import { Container } from 'react-bootstrap' 
 
 const SignUpPage = ({ setUser, setLastPath }) => {
     const [data, setData] = useState({
@@ -118,6 +119,7 @@ const SignUpPage = ({ setUser, setLastPath }) => {
     return (
         <div>
             <Header />
+            <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
             <form onSubmit={handleSubmit}>
                 <h1 className="signup-header">Sign Up</h1>
                 {inputs.map((input) => (
@@ -126,6 +128,7 @@ const SignUpPage = ({ setUser, setLastPath }) => {
                 <p style={{color: 'red', fontWeight: 'bold'}}>{data.error}</p>
                 <button>Submit</button>
             </form>
+            </Container>
         </div>
     )
 }

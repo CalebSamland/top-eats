@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import RestaurantProfile from '../components/RestaurantProfile/RestaurantProfile';
 import ReviewList from '../components/ReviewList/ReviewList'
 import axios from 'axios';
+import { Container } from 'react-bootstrap'
 
 const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   const [reviews, setReviews] = useState([]);
@@ -25,10 +26,12 @@ const RestaurantPage = ( {restaurants, setRestaurants, user, setUser} ) => {
   }, [])
 
   return (
-    <>
+    <> 
       <Header user={user} setUser={setUser}/>
-      <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews.reverse()} setReviews={setReviews}/>
-      <ReviewList reviews={reviews} header={reviews.length > 0 && `Reviews for ${restaurant.name}`}/>
+      <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
+        <RestaurantProfile user={user} restaurant={restaurant} reviews={reviews.reverse()} setReviews={setReviews}/>
+        <ReviewList reviews={reviews} header={reviews.length > 0 && `Reviews for ${restaurant.name}`}/>
+      </Container>
     </>
   )
 }
