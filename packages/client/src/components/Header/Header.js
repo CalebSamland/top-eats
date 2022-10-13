@@ -21,7 +21,7 @@ const Header = ({ user, setUser }) => {
       navigate("/");
     }
   };
-  console.log(user.result);
+  
   return (
     <Navbar bg="secondary" variant="dark">
       <Container fluid="lg" style={{ maxWidth: "1024px" }}>
