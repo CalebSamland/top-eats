@@ -190,17 +190,6 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
                 onChange={handleInputChange}
               ></FormControl>
             </FloatingLabel>
-            {/* <Button
-            variant="info"
-            style={{
-              width: "125px",
-              height: "40px",
-              fontSize: "14px",
-              marginTop: "10px",
-            }}
-            >
-            Add Photos
-          </Button> */}
             <Button
               type="submit"
               variant="success"
