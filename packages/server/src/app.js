@@ -37,9 +37,9 @@ const __dirname = dirname(__filename);
 //Serve Static Assets in production 
 //set static folder
 
-app.use(express.static('../../client/build/index.html'));
+app.use(express.static('packages/client/build'));
 app.get('*', (req, res) => {
-res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));});
+res.sendFile(path.resolve(__dirname, 'packages', 'client', 'build', 'index.html'));});
 
 
 export default app;
