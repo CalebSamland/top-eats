@@ -46,7 +46,7 @@ const ReviewForm = ({ restaurant, user }) => {
     event.stopPropagation();
     setValidated(false);
 
-    if (reviewData.text == "" && reviewData.rating == 0) {
+    if (reviewData.text == "") {
       const toaster = toast.loading(
         "Please wait...",
         setTimeout(() => {
@@ -56,19 +56,7 @@ const ReviewForm = ({ restaurant, user }) => {
             isLoading: false,
             autoClose: 5000,
           });
-        }, 1000)
-      );
-    } else if (reviewData.text == "" || reviewData.rating == 0) {
-      const toaster = toast.loading(
-        "Please wait...",
-        setTimeout(() => {
-          toast.update(toaster, {
-            render: "Please fill out all fields!",
-            type: "error",
-            isLoading: false,
-            autoClose: 5000,
-          });
-        }, 1000)
+        }, 1500)
       );
     } else {
       const toaster = toast.loading(
@@ -80,7 +68,7 @@ const ReviewForm = ({ restaurant, user }) => {
             isLoading: false,
             autoClose: 5000,
           });
-        }, 1500)
+        }, 1000)
       );
     }
     console.log(rating);
