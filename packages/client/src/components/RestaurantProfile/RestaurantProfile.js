@@ -17,7 +17,6 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
   const [rating, setRating] = useState(0);
 
   console.log(averageRating);
-
   useEffect(() => {
     const getDetails = async () => {
       try {
@@ -34,12 +33,14 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
       }
     };
     getDetails();
-    // console.log(restaurants)
+   
   }, []); // add correct dependency array []
+  console.log(details);
+
   return (
-    <Container>
+  <>
       {details ? (
-        <Card>
+        <Card style={{marginTop: '30px'}}>
           <Card.Body>
             <Card.Title style={{ fontSize: "48px" }}>{details.name}</Card.Title>
             <Card.Subtitle style={{ fontSize: "20px" }}>
@@ -50,13 +51,7 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               {details.phone ? `Phone: ${details.phone}` : ""}
             </Card.Text>
             <Card.Text>
-              {/* <StarRating
-                defaultValue={5}
-                min={0}
-                max={5}
-                step={0.5}
-                style={{ height: "50px", width: "50px" }}
-              /> */}
+             
               Rating:{" "}
               {averageRating === "NaN" ? (
                 "No Rating"
@@ -109,12 +104,29 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
                     return (
                       <div key={i}>
                         {days[day.day]}:{" "}
-                        {day.start.slice(0, 2) + ":" + day.start.slice(2)}am to{" "}
-                        {parseInt(day.end.slice(0, 2)) -
-                          12 +
-                          ":" +
-                          day.end.slice(2)}
-                        pm
+                        {day.start >= "1200"
+                          ? parseInt(day.start.slice(0, 2)) -
+                            12 +
+                            ":" +
+                            day.start.slice(2) +
+                            "pm "
+                          : day.start < "1000"
+                          ? day.start.slice(1, -2) +
+                            ":" +
+                            day.start.slice(2) +
+                            "am "
+                          : day.start.slice(0, 2) +
+                            ":" +
+                            day.start.slice(2) +
+                            "am "}
+                        to{" "}
+                        {day.end == "0000"
+                          ? "12:00am"
+                          : parseInt(day.end.slice(0, 2)) -
+                            12 +
+                            ":" +
+                            day.end.slice(2) +
+                            "pm"}
                       </div>
                     );
                   })}
@@ -124,17 +136,17 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               ""
             )}
             <h3>Photos</h3>
-            <p>
+            <Container style={{margin: '0 auto'}}>
               {details.photos.map((photo, i) => {
                 return (
                   <Card.Img
-                    style={{ width: "300px", margin: "20px" }}
+                    style={{ width: "200px", height: '200px', objectFit: 'cover', margin: "20px" }}
                     src={photo}
                     key={i}
                   />
                 );
               })}
-            </p>
+            </Container>
           </Card.Body>
         </Card>
       ) : (
@@ -146,7 +158,7 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
 
         
       </div>
-    </Container>
+   </>
   );
 };
 
