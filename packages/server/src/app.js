@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { API_URL, DB_URL } from './configs/index.js';
 import routes from './routes/index.js';
 
-import * as path from 'path'
+// import * as path from 'path'
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
@@ -30,9 +30,9 @@ app.use(API_URL, routes);
 //Serve Static Assets in production 
 //set static folder
 
-app.use(express.static('/client/build'));
-app.get('*', (req, res) => {
-res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));});
+// app.use(express.static('/client/build'));
+// app.get('*', (req, res) => {
+// res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));});
 
 
 export default app;
