@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Card } from "react-bootstrap";
 import ReviewForm from "../ReviewForm/ReviewForm";
-// import StarRating from "react-bootstrap-star-rating";
 import InactiveReviewForm from "../InactiveReviewForm/InactiveReviewForm";
 
 const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
-  // I still need to call the business details api. So I need to get the restaurant id and call that in the backend
   const id = restaurant.id;
   const [details, setDetails] = useState();
   const totalRating = reviews
@@ -24,8 +22,6 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
           `http://localhost:3001/api/restaurant/${id}`
         );
         setDetails(restaurantDetails.data);
-        // console.log(restaurantListAPI.data)
-        // setPostLoading(false)
       } catch (err) {
         // console.error(err.message
         // setPostLoading(false)
@@ -33,14 +29,12 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
       }
     };
     getDetails();
-   
   }, []); // add correct dependency array []
-  console.log(details);
 
   return (
-  <>
+    <>
       {details ? (
-        <Card style={{marginTop: '30px'}}>
+        <Card style={{ marginTop: "30px" }}>
           <Card.Body>
             <Card.Title style={{ fontSize: "48px" }}>{details.name}</Card.Title>
             <Card.Subtitle style={{ fontSize: "20px" }}>
@@ -51,7 +45,6 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               {details.phone ? `Phone: ${details.phone}` : ""}
             </Card.Text>
             <Card.Text>
-             
               Rating:{" "}
               {averageRating === "NaN" ? (
                 "No Rating"
@@ -136,11 +129,16 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
               ""
             )}
             <h3>Photos</h3>
-            <Container style={{margin: '0 auto'}}>
+            <Container style={{ margin: "0 auto" }}>
               {details.photos.map((photo, i) => {
                 return (
                   <Card.Img
-                    style={{ width: "200px", height: '200px', objectFit: 'cover', margin: "20px" }}
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      objectFit: "cover",
+                      margin: "20px",
+                    }}
                     src={photo}
                     key={i}
                   />
@@ -153,12 +151,18 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
         ""
       )}
       <div>
-
-        {user ? <ReviewForm user={user} restaurant={restaurant} reviews={reviews} setReviews={setReviews}/> : <InactiveReviewForm />}
-
-        
+        {user ? (
+          <ReviewForm
+            user={user}
+            restaurant={restaurant}
+            reviews={reviews}
+            setReviews={setReviews}
+          />
+        ) : (
+          <InactiveReviewForm />
+        )}
       </div>
-   </>
+    </>
   );
 };
 

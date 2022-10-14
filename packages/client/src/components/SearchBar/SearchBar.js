@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { Form, Button, Col, Row, Container } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 import RestaurantResults from "../../components/RestaurantResults/RestaurantResults";
-// import { useSearchParams } from "react-router-dom";
-import style from './SearchBar.css';
+import style from "./SearchBar.css";
 
 const initialState = {
   term: "",
@@ -69,57 +68,59 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
 
   const Stuff = () => (
     <div id="results-showcase">
-      Showing results for "{capitalize(results.term)}" around "{capitalize(results.location)}"
+      Showing results for "{capitalize(results.term)}" around "
+      {capitalize(results.location)}"
     </div>
   );
 
   return (
     <>
-        <h1 className="title">Top Eats</h1>
-        <Form style={{ margin: "40px 0" }} id="form-container">
-          <Row style={{ width: "100%"}}>
-            <Col xs={5} style={{padding: '0'}}>
-              <Form.Control
-                size="lg"
-                type="text"
-                name="term"
-                placeholder="Food"
-                value={searchInput.term}
-                onChange={handleChange}
-                className="input"
-              />
-            </Col>
-            <Col xs={5} style={{padding: '0 25px'}}>
-              <Form.Control
-                size="lg"
-                type="text"
-                name="location"
-                value={searchInput.location}
-                placeholder="Location"
-                onChange={handleChange}
-                className="input"
-              />
-            </Col>
-            <Col xs={2} className="justify-content-center" style={{padding: '0'}}>
-              <Button
-                as="div"
-                style={{ minWidth: "75%" }}
-                type="submit"
-                size="lg"
-                variant="warning"
-                onClick={searchAndDisplay}
-              >
-                Search
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-        {showStuff ? ({ handleSearch }, (<Stuff />)) : ""}
-     
+      <h1 className="title">Top Eats</h1>
+      <Form style={{ margin: "40px 0" }} id="form-container">
+        <Row style={{ width: "100%" }}>
+          <Col xs={5} style={{ padding: "0" }}>
+            <Form.Control
+              size="lg"
+              type="text"
+              name="term"
+              placeholder="Food"
+              value={searchInput.term}
+              onChange={handleChange}
+              className="input"
+            />
+          </Col>
+          <Col xs={5} style={{ padding: "0 25px" }}>
+            <Form.Control
+              size="lg"
+              type="text"
+              name="location"
+              value={searchInput.location}
+              placeholder="Location"
+              onChange={handleChange}
+              className="input"
+            />
+          </Col>
+          <Col
+            xs={2}
+            className="justify-content-center"
+            style={{ padding: "0" }}
+          >
+            <Button
+              as="div"
+              style={{ minWidth: "75%" }}
+              type="submit"
+              size="lg"
+              variant="warning"
+              onClick={searchAndDisplay}
+            >
+              Search
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+      {showStuff ? ({ handleSearch }, (<Stuff />)) : ""}
+
       <RestaurantResults searchInput={searchInput} />
-      {/* <div id="results-showcase">
-        Search results for {searchInput.term} in {searchInput.location}
-      </div> */}
     </>
   );
 };

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
-  Container,
   FloatingLabel,
   FormControl,
   Card,
@@ -27,18 +26,12 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
   const [reviewData, setReviewData] = useState(initialState);
   const [validated, setValidated] = useState(false);
 
-  // Code copied from snippets
-
-  // const [reviews, setReviews] = useState(null)
-
   const handleInputChange = (event) => {
     setReviewData({
       ...reviewData,
       [event.target.name]: event.target.value,
     });
   };
-
-  console.log(reviewData);
 
   const handleReviewSubmit = async (event) => {
     const form = event.currentTarget;
@@ -71,17 +64,11 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
         }, 1000)
       );
     }
-    console.log(rating);
     setReviewData({
       ...reviewData,
       [rating]: rating,
-      // rating: rating
-      // isSubmitting: true,
-      // errorMessage: null,
     });
-    // }
-    console.log(reviewData);
-    console.log(rating);
+
     axios.post("http://localhost:3001/api/newReview", reviewData).then(
       (res) => {
         setReviewData(initialState);
@@ -103,32 +90,13 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
         console.log(error);
         setReviewData({
           ...reviewData,
-          // isSubmitting: false,
-          // errorMessage: error.message,
         });
       }
     );
   };
-  // useEffect(() => {
-  //   const getReviews = async () => {
-  //     try {
-  //       console.log(reviewData)
-  //       const allReviews = await axios.post(`/restaurantReviews/${restaurant.id}`)
-  //       // setPosts(allPosts.data)
-  //       // setPostLoading(false)
-  //     } catch (err) {
-  //       console.error(err.message)
-  //       // setPostLoading(false)
-  //       // setPostError(true)
-  //     }
-  //   }
-  //   getReviews()
-  // }, [])
-  // end code copied from snippets
 
   useEffect(() => {
     const getRating = async () => {
-      console.log(rating);
       try {
         setReviewData({
           ...reviewData,

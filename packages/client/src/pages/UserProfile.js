@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Container, Figure, CloseButton } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container, Figure } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
-import Review from "../components/Review/Review";
 import ReviewList from "../components/ReviewList/ReviewList";
 import axios from "axios";
 
@@ -14,15 +13,8 @@ import axios from "axios";
 const UserProfile = ({ user, setUser }) => {
   const defaultImage = defaultAvatar;
   const userID = user.result._id;
-  const {
-    firstName,
-    lastName,
-    email,
-    birthday,
-    reviews,
-    zip,
-    profile_image,
-  } = user.result;
+  const { firstName, lastName, email, birthday, reviews, zip, profile_image } =
+    user.result;
 
   const [userData, setUserData] = useState({
     firstName,
@@ -49,13 +41,10 @@ const UserProfile = ({ user, setUser }) => {
     getReviews();
   }, []);
 
-  console.log(userReviews);
-  console.log(user);
-
   return (
     <>
       <Header user={user} setUser={setUser} />
-      <Container style={{maxWidth: '1024px', minWidth: '400px'}}>
+      <Container style={{ maxWidth: "1024px", minWidth: "400px" }}>
         <Figure
           className="bg-border-color rounded-circle overflow-hidden"
           style={{
