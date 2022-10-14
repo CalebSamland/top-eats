@@ -20,6 +20,7 @@ const RestaurantProfile = ({ restaurant, reviews, user, setReviews }) => {
       try {
         const restaurantDetails = await axios.get(
           `http://localhost:3001/api/restaurant/${id}`
+          // "http://18.223.97.130/api/restaurants" for the deployed server
         );
         setDetails(restaurantDetails.data);
       } catch (err) {

@@ -18,6 +18,7 @@ const Review = ({ review }) => {
       try {
         const response = await axios.get(
           `http://localhost:3001/api/getUser/${userID}`
+          // "http://18.223.97.130/api/restaurants" for the deployed server
         );
         setUsername(
           `${response.data.result.firstName} ${response.data.result.lastName}`
@@ -30,6 +31,7 @@ const Review = ({ review }) => {
       try {
         const response = await axios.get(
           `http://localhost:3001/api/restaurant/${review.restaurantID}`
+          // "http://18.223.97.130/api/restaurants" for the deployed server
         );
         setRestaurantName(response.data.name);
       } catch (error) {

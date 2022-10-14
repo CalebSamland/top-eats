@@ -17,6 +17,7 @@ const RestaurantPage = ({ restaurants, setRestaurants, user, setUser }) => {
       try {
         const response = await axios.get(
           `http://localhost:3001/api/restaurantReviews/${restaurant.id}`
+          // "http://18.223.97.130/api/restaurants" for the deployed server
         );
         setReviews(...reviews, response.data);
       } catch (error) {

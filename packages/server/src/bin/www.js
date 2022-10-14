@@ -89,6 +89,7 @@ function onListening() {
   console.log(
     `${chalk.green('✓')} ${chalk.blue(
       `Listening on port ${port}. Visit http://localhost:${port}/ in your browser.`
+      // "http://18.223.97.130/api/restaurants" for the deployed server
     )}`
   )
 }

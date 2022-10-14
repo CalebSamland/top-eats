@@ -70,6 +70,7 @@ const ReviewForm = ({ restaurant, user, reviews, setReviews }) => {
     });
 
     axios.post("http://localhost:3001/api/newReview", reviewData).then(
+      // "http://18.223.97.130/api/restaurants" for the deployed server
       (res) => {
         setReviewData(initialState);
         setReviews(() => [

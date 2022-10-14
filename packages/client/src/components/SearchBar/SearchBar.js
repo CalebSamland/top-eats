@@ -31,6 +31,7 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
     try {
       const restaurantListAPI = await axios.post(
         "http://localhost:3001/api/restaurants",
+        // "http://18.223.97.130/api/restaurants" for the deployed server
         searchInput
       );
       console.log(restaurantListAPI.data);

@@ -107,6 +107,7 @@ const SignUpPage = ({ setUser, setLastPath }) => {
     e.preventDefault();
     try {
       const result = await axios.post("http://localhost:3001/api/signup", data);
+      // "http://18.223.97.130/api/restaurants" for the deployed server
       if (result.data.message === "User already exists") {
         setData({
           ...data,

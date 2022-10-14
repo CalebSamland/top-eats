@@ -25,6 +25,7 @@ const SignInPage = ({ setUser, lastPath, setLastPath }) => {
     e.preventDefault();
     try {
       const result = await axios.post("http://localhost:3001/api/signin", data);
+      // "http://18.223.97.130/api/restaurants" for the deployed server
       if (result.data.message === "User doesn't exist") {
         setData({ ...data, error: "This user doesn't exist" });
       } else if (result.data.message === "Invalid credentials") {
