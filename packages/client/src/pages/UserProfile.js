@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Figure } from "react-bootstrap";
+import { Container, Figure, CloseButton } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import defaultAvatar from "../Images/defaultavatar.jpeg";
 import Review from "../components/Review/Review";
@@ -50,6 +50,7 @@ const UserProfile = ({ user, setUser }) => {
   }, []);
 
   console.log(userReviews);
+  console.log(user);
 
   return (
     <>
@@ -82,93 +83,6 @@ const UserProfile = ({ user, setUser }) => {
           <h6>Email: {email}</h6>
           <h6>Reviews: {userReviews.length}</h6>
         </div>
-        {/*<div
-          className="photos"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "20px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h5>
-            <strong>Photos</strong>
-          </h5>
-          <Container
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              margin: "auto",
-              justifyContent: "center",
-              gap: "20px",
-            }}
-          >
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-            <div
-              style={{
-                height: "175px",
-                width: "175px",
-                border: "1px solid black",
-              }}
-            ></div>
-          </Container>
-        </div> */}
         <div
           className="reviews"
           style={{

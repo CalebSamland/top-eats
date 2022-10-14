@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import RestaurantResults from "../../components/RestaurantResults/RestaurantResults";
 // import { useSearchParams } from "react-router-dom";
+import style from './SearchBar.css';
 
 const initialState = {
   term: "",
@@ -74,8 +75,8 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
 
   return (
     <>
-      
-        <Form style={{ margin: "40px 0" }}>
+        <h1 className="title">Top Eats</h1>
+        <Form style={{ margin: "40px 0" }} id="form-container">
           <Row style={{ width: "100%"}}>
             <Col xs={5} style={{padding: '0'}}>
               <Form.Control
@@ -85,6 +86,7 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
                 placeholder="Food"
                 value={searchInput.term}
                 onChange={handleChange}
+                className="input"
               />
             </Col>
             <Col xs={5} style={{padding: '0 25px'}}>
@@ -95,12 +97,13 @@ const SearchBar = ({ restaurants, setRestaurants }) => {
                 value={searchInput.location}
                 placeholder="Location"
                 onChange={handleChange}
+                className="input"
               />
             </Col>
             <Col xs={2} className="justify-content-center" style={{padding: '0'}}>
               <Button
                 as="div"
-                style={{ minWidth: "100%" }}
+                style={{ minWidth: "75%" }}
                 type="submit"
                 size="lg"
                 variant="warning"
