@@ -6,7 +6,7 @@ Allows users to sign-up and review restaurants.
 
 Created using create-react-app.
 
-Uses MERN stack: React, Node, Express, MongoDB
+Built using the MERN stack: React, Node, Express, MongoDB
 
 ## Dependencies
 - react
