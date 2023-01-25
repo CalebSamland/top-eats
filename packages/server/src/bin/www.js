@@ -7,7 +7,7 @@
 import app from "../app.js";
 // import debug from "server";
 import http from "http";
-import chalk from "chalk";
+// import chalk from "chalk";
 import "core-js/stable/index.js";
 import "regenerator-runtime";
 import { PORT } from "../configs/index.js";
@@ -84,10 +84,10 @@ function onError(error) {
  */
 
 function onListening() {
-  console.log(
-    `${chalk.green("✓")} ${chalk.blue(
-      `Listening on port ${port}. Visit http://localhost:${port}/ in your browser.`
-      // "http://18.223.97.130/api/restaurants" for the deployed server
-    )}`
-  );
+  // console.log(
+  //   `${chalk.green("✓")} ${chalk.blue(
+  //     `Listening on port ${port}. Visit http://localhost:${port}/ in your browser.`
+  //     // "http://18.223.97.130/api/restaurants" for the deployed server
+  //   )}`
+  // );
 }
